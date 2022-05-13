@@ -5,7 +5,7 @@ services:
     image: client
     build:
       context: client
-      dockerfile: ./debug.Dockerfile
+      dockerfile: ./Dockerfile
     environment:
       NODE_ENV: development
     ports:
