@@ -1,5 +1,5 @@
-import { Reducer } from 'redux'
-import * as types from './types'
+import { Reducer } from 'redux';
+import * as types from './types';
 
 
 const initialState: types.CounterStateType = {
@@ -25,6 +25,9 @@ export const counterReducer: Reducer<types.CounterStateType> = (state = initialS
                 count: state.count - action.payload
             }
         }
-    }
-    
+
+        default: {
+            return {...state}
+        }
+    }   
 }
