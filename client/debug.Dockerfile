@@ -8,11 +8,7 @@ COPY . .
 
 RUN npm install
 
-RUN chown -R node /usr/src/app
-
 EXPOSE 3000
-
-USER node
 
 ENTRYPOINT [ "npm" ]
 
