@@ -1,5 +1,32 @@
-$playground-background: white;
-$playground-border-color:black;
-$food-color: blue;
-$snake-head-color: red;
-$snake-body-color: red;
+// Constants
+
+$playground-width: 50 + 1; // + 1 because grid is indexing from 1
+$playground-height: 50 + 1; // + 1 because grid is indexing from 1
+
+$playground-background: #222831;
+$food-color: red;
+$snake-head-color: #00ADB5;
+$snake-body-color: #EEEEEE;
+
+.snakeGame {
+    display: grid;
+    grid-template-columns: repeat($playground-width, 1fr);
+    grid-template-rows: repeat($playground-height, 1fr);
+
+    height: 600px;
+    width: 600px;
+
+    background-color: $playground-background;
+}
+
+.BodyblockType {
+    background-color: $snake-body-color;
+}
+
+.HeadblockType {
+    background-color: $snake-head-color;
+}
+
+.FoodblockType {
+    background-color: $food-color;
+}

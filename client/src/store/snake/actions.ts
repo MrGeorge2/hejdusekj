@@ -15,7 +15,7 @@ export const ChangeDirection = (payload: types.SnakeDirection) => {
     }
 }
 
-//
+// Set snake blocks
 export const SetBlocks = (payload: readonly types.Block[]) => {
     return {
         type: types.SET_BLOCKS,
