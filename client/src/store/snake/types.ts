@@ -1,6 +1,6 @@
 // Constants
-export const PLAYGROUND_WIDTH = 201; // In "blocks"
-export const PLAYGROUN_HEIGHT = 401; // In "blocks"
+export const PLAYGROUND_WIDTH = 50; // In "blocks"
+export const PLAYGROUN_HEIGHT = 50; // In "blocks"
 
 export const INITIAL_VELOCITY = 1; // Block per second
 export const VELOCITY_MULTIPLIER = 1.1 // After snake eats his food, this constant will multiply actual velocity
@@ -30,11 +30,15 @@ export type SnakeGameStateType = {
     score: number;
     snakeVelocity: number;
     direction: SnakeDirection;
+    food: Readonly<Block>
 }
 
 // Actions
 export const START_GAME = "snakeGame/start";
 export const SET_BLOCKS = "snakeGame/setBlocks";
+export const SET_FOOD_POSITION = "snakeGame/setFoodPosition"
+export const INCREMENT_SCORE = "snakeGame/incrementScore";
+export const RESET_SCORE = "snakeGame/resetScore";
 
 export type StartGameType = {
     type: typeof START_GAME;
@@ -45,7 +49,23 @@ export type SetBlocksType = {
     payload: readonly Block[]
 }
 
-export type SnakeActions = StartGameType | SetBlocksType;
+export type SetFootPositionType = {
+    type: typeof SET_FOOD_POSITION,
+    payload: {
+        x: number,
+        y: number
+    }
+}
+
+export type IncrementScoreType = {
+    type: typeof INCREMENT_SCORE,
+}
+
+export type ResetScoreType = {
+    type: typeof RESET_SCORE,
+}
+
+export type SnakeActions = StartGameType | SetBlocksType | SetFootPositionType| IncrementScoreType | ResetScoreType;
 
 // Action creators
 export const CHANGE_DIRECTION = "snakeGame/changeDirectoryActionCreator";

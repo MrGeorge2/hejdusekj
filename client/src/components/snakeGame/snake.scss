@@ -13,10 +13,13 @@ $snake-body-color: #EEEEEE;
     grid-template-columns: repeat($playground-width, 1fr);
     grid-template-rows: repeat($playground-height, 1fr);
 
+    position: absolute;
     height: 600px;
     width: 600px;
 
     background-color: $playground-background;
+
+    cursor: pointer;
 }
 
 .BodyblockType {

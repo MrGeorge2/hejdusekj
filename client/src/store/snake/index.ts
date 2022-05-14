@@ -1,5 +1,4 @@
-export  type {
-    SnakeDirection,
+export type {
     Block,
     SnakeGameStateType,
     StartGameType,
@@ -9,6 +8,7 @@ export  type {
     SnakeActionCreatorType
 } from './types'
 
-export {  
-    BlockType 
+export {
+    BlockType,
+    SnakeDirection,
 } from './types'
