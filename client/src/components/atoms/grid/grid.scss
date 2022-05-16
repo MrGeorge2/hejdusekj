@@ -1,0 +1,31 @@
+$grid-sizes: ('XS': 0px, 'S': 576px, 'M': 768px, 'L': 992px, "XL": 1200, "XXL": 1400);
+$grid-columns: 12;
+$grid-gabs: 8;
+.container {
+    max-width: 80;
+}
+
+.container-fluid {
+    max-width: 90%;
+}
+
+.grid {
+    display: grid;
+}
+
+// Generates all classes for responsive grid
+@each $size,
+$width in $sizes {
+    @media (min-width: $width) {
+        @for $i from 1 through $grid-columns {
+            .grid-size-#{$size}-#{$i} {
+                grid-template-columns: repeat($i, 1fr);
+            }
+        }
+        @for $i from 1 through $grid-gabs {
+            .grid-gap-#{$size}-#{$i} {
+                gap: repeat($i, 1fr);
+            }
+        }
+    }
+}
