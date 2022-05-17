@@ -1,3 +1,4 @@
+import snakeChangeDirectionWatcher from "../../saga/snake/snakeSaga";
 import { RootState } from "../rootStore";
 
 export const selectSnakeBlocks = (state: RootState) => {
@@ -18,4 +19,12 @@ export const selectFood = (state: RootState) => {
 
 export const selectScore = (state: RootState) => {
     return state.snake.score;
+}
+
+export const selectVelocity = (state: RootState) => {
+    return state.snake.snakeVelocity;
+}
+
+export const selectSnakeDirection = (state: RootState) => {
+    return state.snake.direction;
 }

@@ -1,7 +1,6 @@
 export type {
     Block,
     SnakeGameStateType,
-    StartGameType,
     SetBlocksType,
     SnakeActions,
     ChangeDirectionType,

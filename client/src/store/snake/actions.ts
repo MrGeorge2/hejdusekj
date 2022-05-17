@@ -1,9 +1,10 @@
 import * as types from './types'
 
-// Starts the game
-export const StartGameAction = (): types.StartGameType => {
+// Set velocity for snake
+export const SetVelocityAction = (payload: number): types.SetVelocityType => {
     return {
-        type: types.START_GAME
+        type: types.SET_VELOCITY,
+        payload: payload
     }
 }
 
@@ -43,5 +44,13 @@ export const IncrementScoreAction = (): types.IncrementScoreType => {
 export const ResetScoreAction = (): types.ResetScoreType => {
     return {
         type: types.RESET_SCORE,
+    }
+}
+
+// Set snake direction
+export const SetSnakeDirectionAction = (payload: types.SnakeDirection): types.SetSnakeDirectionType => {
+    return {
+        type: types.SET_DIRECTION,
+        payload: payload
     }
 }

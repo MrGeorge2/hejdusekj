@@ -14,17 +14,12 @@ const initialState: types.SnakeGameStateType = {
     },
     score: 0,
     snakeVelocity: 0,
-    direction: types.SnakeDirection.Up
+    direction: types.SnakeDirection.Up,
+    isStarted: false
 }
 
 export const snakeReducer: Reducer<types.SnakeGameStateType> = (state  = initialState, action: types.SnakeActions): Readonly<types.SnakeGameStateType> => {
     switch (action.type) {
-        case (types.START_GAME): {
-            return {
-                ...state,
-                snakeVelocity: types.INITIAL_VELOCITY
-            }
-        }
 
         case (types.SET_BLOCKS): {
             return {
@@ -55,6 +50,20 @@ export const snakeReducer: Reducer<types.SnakeGameStateType> = (state  = initial
             return {
                 ...state,
                 score: 0
+            }
+        }
+
+        case (types.SET_VELOCITY): {
+            return {
+                ...state,
+                snakeVelocity: action.payload
+            }
+        }
+
+        case (types.SET_DIRECTION): {
+            return {
+                ...state,
+                direction: action.payload
             }
         }
 

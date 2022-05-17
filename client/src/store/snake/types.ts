@@ -30,19 +30,17 @@ export type SnakeGameStateType = {
     score: number;
     snakeVelocity: number;
     direction: SnakeDirection;
-    food: Readonly<Block>
+    food: Readonly<Block>;
+    isStarted: boolean;
 }
 
 // Actions
-export const START_GAME = "snakeGame/start";
 export const SET_BLOCKS = "snakeGame/setBlocks";
 export const SET_FOOD_POSITION = "snakeGame/setFoodPosition"
 export const INCREMENT_SCORE = "snakeGame/incrementScore";
 export const RESET_SCORE = "snakeGame/resetScore";
-
-export type StartGameType = {
-    type: typeof START_GAME;
-}
+export const SET_VELOCITY = "snakeGame/setVelocity";
+export const SET_DIRECTION = "snakeGame/setDirection";
 
 export type SetBlocksType = {
     type: typeof SET_BLOCKS,
@@ -65,7 +63,17 @@ export type ResetScoreType = {
     type: typeof RESET_SCORE,
 }
 
-export type SnakeActions = StartGameType | SetBlocksType | SetFootPositionType| IncrementScoreType | ResetScoreType;
+export type SetVelocityType = {
+    type: typeof SET_VELOCITY,
+    payload: number
+}
+
+export type SetSnakeDirectionType = {
+    type: typeof SET_DIRECTION,
+    payload: SnakeDirection
+}
+
+export type SnakeActions = SetBlocksType | SetFootPositionType| IncrementScoreType | ResetScoreType | SetVelocityType | SetSnakeDirectionType;
 
 // Action creators
 export const CHANGE_DIRECTION = "snakeGame/changeDirectoryActionCreator";
@@ -75,4 +83,5 @@ export type ChangeDirectionType = {
     payload: SnakeDirection
 }
 
-export type SnakeActionCreatorType = ChangeDirectionType
+
+export type SnakeActionCreatorType = ChangeDirectionType;

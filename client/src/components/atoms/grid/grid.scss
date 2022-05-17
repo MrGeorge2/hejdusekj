@@ -15,7 +15,7 @@ $grid-gabs: 8;
 
 // Generates all classes for responsive grid
 @each $size,
-$width in $sizes {
+$width in $grid-sizes {
     @media (min-width: $width) {
         @for $i from 1 through $grid-columns {
             .grid-size-#{$size}-#{$i} {

@@ -1,10 +1,39 @@
-import { call, put, select, takeLatest } from "redux-saga/effects";
-import { IncrementScoreAction, ResetScoreAction, SetBlocksAction, SetFoodPositionAction } from "../../store/snake/actions";
-import { selectFood, selectHead, selectScore, selectSnakeBlocks } from "../../store/snake/selectors";
-import { CHANGE_DIRECTION, ChangeDirectionType, SnakeDirection, Block, BlockType, PLAYGROUND_WIDTH, PLAYGROUN_HEIGHT } from "../../store/snake/types";
+import { all, call, put, select, takeLatest, spawn, delay, takeEvery } from "redux-saga/effects";
+import { ChangeDirectionAction, ResetScoreAction, SetBlocksAction, SetFoodPositionAction, SetSnakeDirectionAction, SetVelocityAction } from "../../store/snake/actions";
+import { selectFood, selectHead, selectScore, selectSnakeBlocks, selectSnakeDirection, selectVelocity } from "../../store/snake/selectors";
+import { CHANGE_DIRECTION, ChangeDirectionType, SnakeDirection, Block, BlockType, PLAYGROUND_WIDTH, PLAYGROUN_HEIGHT, INITIAL_VELOCITY, VELOCITY_MULTIPLIER } from "../../store/snake/types";
 
+/**
+ * gameloop
+ */
+function* gameLoop(){
+    let velocity: number = yield select(selectVelocity);
+    
+    while (velocity !== 0) {
 
-function* gameOverWorkder() {
+        const direction: SnakeDirection = yield select(selectSnakeDirection)
+
+        yield put(ChangeDirectionAction(direction));
+        
+        // default 1s / velocity
+        yield delay(1000 / velocity);
+
+        velocity = yield select(selectVelocity);
+    }
+}
+
+/**
+ * Handle game start
+ */
+function* startGame() {
+    yield put(SetVelocityAction(INITIAL_VELOCITY))
+    yield spawn(gameLoop);
+}
+
+/**
+ * Handle game over
+ */
+function* gameOverWorker() {
     const resetBlocks: readonly Block[] = [{
         x: Math.floor(PLAYGROUND_WIDTH / 2) + 1,
         y: Math.floor(PLAYGROUN_HEIGHT / 2) + 1,
@@ -16,12 +45,45 @@ function* gameOverWorkder() {
     const score: number = yield select(selectScore);
     alert(`GAME OVER! Your score is ${score}`);
 
+    // Reset games attributes to default values
     yield put(ResetScoreAction());
+    yield put(SetVelocityAction(0));
+    yield put(SetSnakeDirectionAction(SnakeDirection.Up));
+}
+
+/**
+ * Generates a food for snake
+ */
+function* generateFoodBlockWorker(head: Block) {
+    let x = Math.round(Math.random() * PLAYGROUND_WIDTH);
+    while (x === head.x) {
+        x = Math.round(Math.random() * PLAYGROUND_WIDTH);
+    }
+
+    let y = Math.round(Math.random() * PLAYGROUN_HEIGHT);
+    while (y === head.y) {
+        y = Math.round(Math.random() * PLAYGROUN_HEIGHT);
+    }
+
+    yield put(SetFoodPositionAction({x: x, y: y}));
+
+    // After snake eats a food, increment velocity
+    const velocity: number = yield select(selectVelocity);
+    yield put(SetVelocityAction(velocity * VELOCITY_MULTIPLIER));
 }
 
 function* snakeChangeDirectionWorker(action: ChangeDirectionType) {
-    const headState: Readonly<Block> = yield select(selectHead);
+    yield put(SetSnakeDirectionAction(action.payload));
+
+    const velocity: number = yield select(selectVelocity);
     
+    // Start game
+    if (velocity === 0) {
+        yield call(startGame)
+    }
+
+    const headState: Readonly<Block> = yield select(selectHead);
+
     // last head is now body
     const newBody: Block = {...headState}
     newBody.blockType = BlockType.Body;
@@ -54,13 +116,13 @@ function* snakeChangeDirectionWorker(action: ChangeDirectionType) {
         blocksState.some(snakeBlock => snakeBlock.x === head.x && snakeBlock.y === head.y));
 
     if (colision) {
-        yield call(gameOverWorkder);
+        yield call(gameOverWorker);
         return;
     }
 
     // Out of playground check
     if (head.x < 0 || head.x > PLAYGROUN_HEIGHT || head.y < 0 || head.y > PLAYGROUND_WIDTH){
-        yield call(gameOverWorkder);
+        yield call(gameOverWorker);
         return;
     }
 
@@ -70,11 +132,7 @@ function* snakeChangeDirectionWorker(action: ChangeDirectionType) {
 
     if (head.x === food.x && head.y === food.y){
         // generate new position of the food
-        const x = Math.round(Math.random() * PLAYGROUND_WIDTH);
-        const y = Math.round(Math.random() * PLAYGROUN_HEIGHT);
-
-        yield put(SetFoodPositionAction({x: x, y: y}));
-        yield put(IncrementScoreAction())
+        yield call(generateFoodBlockWorker, head);
     }
     else{
         // remove tail
@@ -85,5 +143,7 @@ function* snakeChangeDirectionWorker(action: ChangeDirectionType) {
 }
 
 export default function* snakeChangeDirectionWatcher() {
-    yield takeLatest(CHANGE_DIRECTION, snakeChangeDirectionWorker)
+    yield all([
+        takeEvery(CHANGE_DIRECTION, snakeChangeDirectionWorker),
+    ]);
 }
