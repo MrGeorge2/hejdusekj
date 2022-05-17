@@ -1,4 +1,4 @@
-import { all, call, put, select, takeLatest, spawn, delay, takeEvery } from "redux-saga/effects";
+import { all, call, put, select, spawn, delay, takeEvery } from "redux-saga/effects";
 import { ChangeDirectionAction, ResetScoreAction, SetBlocksAction, SetFoodPositionAction, SetSnakeDirectionAction, SetVelocityAction } from "../../store/snake/actions";
 import { selectFood, selectHead, selectScore, selectSnakeBlocks, selectSnakeDirection, selectVelocity } from "../../store/snake/selectors";
 import { CHANGE_DIRECTION, ChangeDirectionType, SnakeDirection, Block, BlockType, PLAYGROUND_WIDTH, PLAYGROUN_HEIGHT, INITIAL_VELOCITY, VELOCITY_MULTIPLIER } from "../../store/snake/types";
