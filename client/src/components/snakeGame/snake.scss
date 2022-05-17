@@ -1,24 +1,19 @@
+@import '../../styles/constants.scss';
 // Constants
-
-$playground-width: 50 + 1; // + 1 because grid is indexing from 1
-$playground-height: 50 + 1; // + 1 because grid is indexing from 1
-
-$playground-background: #222831;
+$playground-width: 50+1; // + 1 because grid is indexing from 1
+$playground-height: 50+1; // + 1 because grid is indexing from 1
+$playground-background: $pBlack;
 $food-color: red;
-$snake-head-color: #00ADB5;
-$snake-body-color: #EEEEEE;
-
+$snake-head-color: $pTeal;
+$snake-body-color: $pWhite;
 .snakeGame {
     display: grid;
     grid-template-columns: repeat($playground-width, 1fr);
     grid-template-rows: repeat($playground-height, 1fr);
-
     position: absolute;
     height: 600px;
     width: 600px;
-
     background-color: $playground-background;
-
     cursor: pointer;
 }
 
