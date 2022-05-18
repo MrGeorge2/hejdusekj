@@ -7,7 +7,7 @@ const Header: React.FunctionComponent = (
 ) => {
     return (
         <Nav>
-            <Nav.Logo logoSrc={process.env.PUBLIC_URL + "/logo/logoSmall.svg"} logoAlt="logo JH" href="/" />
+            {/*<Nav.Logo logoSrc={process.env.PUBLIC_URL + "/logo/logoSmall.svg"} logoAlt="logo JH" href="/" />*/}
             <Nav.Collapse collapseSize={760}>
                 <Nav.Element text="CV" href="/cv"/>
                 <Nav.Element text="Games" href="/games"/>

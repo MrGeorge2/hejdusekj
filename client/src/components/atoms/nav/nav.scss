@@ -14,18 +14,35 @@
 .nav-collapse {
     display: flex;
     align-items: center;
+    width: 100%;
+    margin: 0 2rem;
 }
 
 .nav-element-container {
     display: flex;
     justify-content: center;
 
-    margin: 0 0.2rem;
+    margin: auto;
     width: 100%;
     height: 100%;
 
     label {
         margin: auto 0;
         cursor: pointer;
+    }
+}
+
+.nav-burger {
+    margin-left: auto;
+}
+
+.nav.nav-collapse.nav-collapse-collapsed {
+    flex-direction: column;
+    margin: auto;
+    position: absolute;
+    background-color: $navBarColor;
+    
+    .nav-element-container {
+        padding: 1rem 0;
     }
 }

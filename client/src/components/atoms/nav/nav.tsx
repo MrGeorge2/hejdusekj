@@ -1,6 +1,8 @@
 import React from 'react';
 import { INavCollapse, INavElement, INavLogo, INavProps } from "./types";
 import './nav.scss';
+import isComponentVisible from '../../../hooks/isComponentVisible';
+import useComponentVisible from '../../../hooks/isComponentVisible';
 
 
 type NavLogoType = React.FunctionComponent<INavLogo>;
@@ -61,10 +63,14 @@ const NavCollapse: NavCollapseType = ({
     children,
     collapseSize
 }) => {
-    const [isCollapsed, setIsCollapsed] = React.useState(window.matchMedia(`(min-width: ${collapseSize}px)`).matches);
+    const collapseRef = React.useRef<HTMLDivElement>(null)
+    const [isBurgerVisible, setIsBurgerVisible] = React.useState(false);
+    const [isCollapsed, setIsCollapsed] = React.useState(!window.matchMedia(`(min-width: ${collapseSize}px)`).matches);
 
     const resizeHandler = (e: MediaQueryListEvent) => {
-        setIsCollapsed(e.matches);
+        setIsCollapsed(!e.matches);
+
+        setIsBurgerVisible(false);
     }
 
     React.useEffect(() => {
@@ -72,7 +78,19 @@ const NavCollapse: NavCollapseType = ({
         return () => window.matchMedia(`(min-width: ${collapseSize}px)`).removeEventListener("change", resizeHandler);
     }, [])
 
-    const collapseClsName = isCollapsed ? "nav-collapse-uncollapsed" : "nav-collapse-collapsed";
+    const handleClickOutside = (e: MouseEvent) => {
+        //@ts-ignore
+        if (!collapseRef.current?.contains(e.target)){
+            setIsBurgerVisible(false);
+        }
+    }
+
+    React.useEffect(() => {
+        document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside)
+    },[]);
+
+    const collapseClsName = isCollapsed ?  "nav-collapse-collapsed" : "nav-collapse-uncollapsed";
 
     return (
         <div
@@ -80,8 +98,23 @@ const NavCollapse: NavCollapseType = ({
             className={`nav nav-collapse ${collapseClsName} ${className ?? ""}`}
             onClick={onClick}
             style={style}
+            ref={collapseRef}
         >
-            {children}
+            <button 
+                className='nav-burger'
+                onClick={() => setIsBurgerVisible(!isBurgerVisible)}
+                style={!isCollapsed ? {display: "none"} : {}}
+            >   
+                Open Burger
+            </button>
+            {
+                isCollapsed && isBurgerVisible &&
+                children
+            }
+            {
+                !isCollapsed &&
+                children
+            }
         </div>
     )
 }
