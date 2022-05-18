@@ -3,5 +3,5 @@ export interface IBaseProps {
     className?: string,
     onClick?: () => void,
     style?: React.CSSProperties,
-    children?: React.ReactElement
+    children?: React.ReactNode
 }

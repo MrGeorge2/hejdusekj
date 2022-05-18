@@ -3,7 +3,7 @@ import { IBaseProps } from "../base/types";
 
 export interface INavElement extends IBaseProps {
     href?: string
-    text: string
+    text?: string
 }
 
 export interface INavLogo extends INavElement {

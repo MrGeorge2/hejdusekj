@@ -1,13 +1,13 @@
 import { Grid } from "./components/atoms/grid/grid";
+import { Layout } from "./components/layout/layout";
 import { SnakeGame } from "./components/snakeGame/snake";
 
 
 function App() {
   return (
-    <>
-    <SnakeGame/>
-    <Grid></Grid>
-    </>
+    <Layout>
+      <div></div>
+    </Layout>
   );
 }
 
