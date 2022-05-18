@@ -1,8 +1,6 @@
 import React from 'react';
 import { INavCollapse, INavElement, INavLogo, INavProps } from "./types";
 import './nav.scss';
-import isComponentVisible from '../../../hooks/isComponentVisible';
-import useComponentVisible from '../../../hooks/isComponentVisible';
 
 
 type NavLogoType = React.FunctionComponent<INavLogo>;

@@ -11,8 +11,8 @@ const Header: React.FunctionComponent = (
             <Nav.Collapse collapseSize={760}>
                 <Nav.Element text="CV" href="/cv"/>
                 <Nav.Element text="Games" href="/games"/>
-                <Nav.Element text="Github" href="/github"/>
-                <Nav.Element text="Linkedin" href="/linkedin"/>
+                <Nav.Element text="Github" href="https://github.com/MrGeorge2/hejdusekj"/>
+                <Nav.Element text="Linkedin" href="https://cz.linkedin.com/in/jirihejdusek"/>
             </Nav.Collapse>
         </Nav>
     )

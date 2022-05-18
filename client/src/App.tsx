@@ -1,12 +1,15 @@
-import { Grid } from "./components/atoms/grid/grid";
 import { Layout } from "./components/layout/layout";
 import { SnakeGame } from "./components/snakeGame/snake";
-
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
 function App() {
   return (
     <Layout>
-      <div></div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SnakeGame/>}/>
+        </Routes>
+      </BrowserRouter>
     </Layout>
   );
 }
