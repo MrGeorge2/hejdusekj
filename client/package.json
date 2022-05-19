@@ -4,6 +4,10 @@
     "private": true,
     "dependencies": {
         "@babel/core": "^7.16.0",
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
+        "@mui/icons-material": "^5.8.0",
+        "@mui/material": "^5.8.0",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
         "@redux-saga/types": "^1.1.0",
         "@reduxjs/toolkit": "^1.8.1",
