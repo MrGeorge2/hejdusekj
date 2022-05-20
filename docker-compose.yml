@@ -3,6 +3,7 @@ version: '3.4'
 services:
   client:
     image: client
+    restart: always
     build:
       context: client
       dockerfile: ./Dockerfile
@@ -10,3 +11,27 @@ services:
       NODE_ENV: production
     ports:
       - 3000:3000
+  
+  server:
+    image: server
+    restart: always
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    environment:
+      DB_PASSWORD: supersecret
+    ports:
+      - 8080:8080
+
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_USER: root
+      MARIADB_ROOT_PASSWORD: supersecret
+    volumes:
+      - database_volume:/var/lib/mysql
+    ports: 
+      - 3306:3306
+volumes:
+  database_volume:
