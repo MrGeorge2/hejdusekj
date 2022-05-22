@@ -24,7 +24,7 @@ services:
       - 8080:8080
 
   database:
-    image: mariadb
+    image: mariadb:10.7.3
     restart: always
     environment:
       MARIADB_USER: root

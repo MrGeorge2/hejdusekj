@@ -6,11 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 var services = builder.Services;
 
-// Register graphql
-services
-    .AddGraphQLServer()
-    .AddQueryType<Query>();
-
 // Register database
 services
     .RegisterLocalContexts();
@@ -19,7 +14,14 @@ services
 services.
     RegisterLocalServices();
 
+// Register graphql
+services
+    .AddGraphQLServer()
+    .AddQueryType<Query>();
+
 var app = builder.Build();
+
+app.MigrateDatabases();
 
 app.MapGraphQL();
 app.Run();

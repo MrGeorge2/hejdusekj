@@ -1,10 +1,22 @@
 namespace GraphServer.Models;
 
-public class Language
+
+public class Language : BaseModel
 {
-    public Int64 Id { get; set; }
+    private Language()
+    {
+        // Default constructor for EF
+        LanguageCode = String.Empty;
+        Localizations = new List<Localization>();
+    }
 
-    public string LanguageCode { get; set; }
+    public Language(string languageCode)
+    {
+        LanguageCode = languageCode;
+        Localizations = new List<Localization>();
+    }
 
-    public IList<Localization> Localizations { get; } = new List<Localization>();
+    public string LanguageCode { get; }
+
+    public IList<Localization> Localizations { get; }
 }

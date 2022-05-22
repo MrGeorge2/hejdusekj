@@ -15,6 +15,23 @@ public class LocalizationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder model)
     {
+        model.Entity<Language>()
+            .HasKey(x => x.Id);
+
+        model.Entity<Language>()
+            .HasIndex(x => x.LanguageCode);
+
+        model.Entity<Localization>()
+            .HasKey(x => x.Id);
+
+        model.Entity<Localization>()
+            .HasIndex(x => x.Key)
+            .IsUnique();
+
+        model.Entity<Localization>()
+        .HasOne(p => p.Language)
+        .WithMany(b => b.Localizations);
+
         model.Entity<Localization>().ToTable("Localization");
         model.Entity<Language>().ToTable("Language");
     }
