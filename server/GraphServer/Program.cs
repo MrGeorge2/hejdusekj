@@ -20,7 +20,7 @@ services.
 services
     .RegisterLocalContexts();
 
-
 var app = builder.Build();
+
 app.MapGraphQL();
 app.Run();
