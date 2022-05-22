@@ -13,6 +13,9 @@ public class LocalizationService : ILocalizationService
         _localizationContext = localizationContext;
     }
 
+    /// <summary>
+    /// Gets the localization for the specified language.
+    /// </summary>
     public async Task<Localization?> GetLocalizationAsync(string languageCode, string key, CancellationToken cancellationToken)
     {
         var language = await _localizationContext.Languages.FirstOrDefaultAsync(x => x.LanguageCode == languageCode, cancellationToken);
@@ -24,6 +27,9 @@ public class LocalizationService : ILocalizationService
         return await _localizationContext.Localizations.FirstOrDefaultAsync(x => x.Key == key && x.LanguageId == language.Id, cancellationToken);
     }
 
+    /// <summary>
+    /// Gets the localization for the specified language.
+    /// </summary>
     public async Task<IList<Localization>?> GetLocalizationsAsync(string languageCode, CancellationToken cancellationToken)
     {
         var language = await _localizationContext.Languages.FirstOrDefaultAsync(x => x.LanguageCode == languageCode, cancellationToken);
