@@ -7,10 +7,10 @@ public interface ILocalizationService
     /// <summary>
     /// Gets the localization for the specified language.
     /// </summary>
-    Task<IList<Localization>> GetLocalizationsAsync(string languageCode, CancellationToken cancellationToken);
+    Task<IList<Localization>?> GetLocalizationsAsync(string languageCode, CancellationToken cancellationToken);
 
     /// <summary>
     /// Gets the localization for the specified language.
     /// </summary>
-    Task<Localization> GetLocalizationAsync(string languageCode, string key, CancellationToken cancellationToken);
+    Task<Localization?> GetLocalizationAsync(string languageCode, string key, CancellationToken cancellationToken);
 }
