@@ -11,14 +11,13 @@ services
     .AddGraphQLServer()
     .AddQueryType<Query>();
 
-// Register local services
-services.
-    RegisterLocalServices();
-
-
 // Register database
 services
     .RegisterLocalContexts();
+
+// Register local services
+services.
+    RegisterLocalServices();
 
 var app = builder.Build();
 

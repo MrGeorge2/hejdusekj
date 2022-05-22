@@ -20,7 +20,7 @@ public static class RootContext{
         var mariaDBUser = Environment.GetEnvironmentVariable("MARIADB_USER");
         var mariaDBPassword = Environment.GetEnvironmentVariable("MARIADB_PASSWORD");
         var mariaDBDatabase = Environment.GetEnvironmentVariable("MARIADB_DATABASE");
-        var mariaDBConnectionString = $"Server={mariaDBHost};Port={mariaDBPort};Database={mariaDBDatabase};Uid={mariaDBUser};Pwd={mariaDBPassword};";
+        var mariaDBConnectionString = $"Server={mariaDBHost};Port={mariaDBPort};Database={mariaDBDatabase};User={mariaDBUser};Password={mariaDBPassword};";
 
 
         services.AddDbContext<LocalizationContext>(options =>

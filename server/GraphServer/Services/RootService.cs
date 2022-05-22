@@ -10,6 +10,6 @@ public static class RootService
     /// </summary>
     public static void RegisterLocalServices(this IServiceCollection services)
     {
-        services.AddSingleton<ILocalizationService, LocalizationService>();
+        services.AddTransient<ILocalizationService, LocalizationService>();
     }
 }

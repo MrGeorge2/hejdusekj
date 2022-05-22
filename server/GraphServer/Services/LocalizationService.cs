@@ -1,12 +1,15 @@
+using GraphServer.Data;
 using GraphServer.Models;
 
 namespace GraphServer.Services;
 
 public class LocalizationService : ILocalizationService
 {
-
-    public LocalizationService(){
-
+    private readonly LocalizationContext _localizationContext;
+    public LocalizationService(
+        LocalizationContext localizationContext)
+    {
+        _localizationContext = localizationContext;
     }
 
     public async Task<Localization> GetLocalizationAsync(string languageCode, string key, CancellationToken cancellationToken)
