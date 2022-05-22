@@ -1,3 +1,4 @@
+using GraphServer.Data;
 using GraphServer.Queries;
 using GraphServer.Services;
 
@@ -16,6 +17,8 @@ services.
 
 
 // Register database
+services
+    .RegisterLocalContexts();
 
 
 var app = builder.Build();
