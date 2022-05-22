@@ -35,14 +35,16 @@ namespace GraphServer.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Key = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    LanguageId1 = table.Column<long>(type: "bigint", nullable: false)
+                    Value = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    LanguageId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Localization", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Localization_Language_LanguageId1",
-                        column: x => x.LanguageId1,
+                        name: "FK_Localization_Language_LanguageId",
+                        column: x => x.LanguageId,
                         principalTable: "Language",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -61,9 +63,9 @@ namespace GraphServer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Localization_LanguageId1",
+                name: "IX_Localization_LanguageId",
                 table: "Localization",
-                column: "LanguageId1");
+                column: "LanguageId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

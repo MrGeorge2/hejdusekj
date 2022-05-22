@@ -5,5 +5,5 @@ namespace GraphServer.Models;
 public abstract class BaseModel
 {
     [Key]
-    public Int64 Id { get; }
+    public Int64 Id { get; private set; }
 }

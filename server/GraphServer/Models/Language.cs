@@ -16,7 +16,7 @@ public class Language : BaseModel
         Localizations = new List<Localization>();
     }
 
-    public string LanguageCode { get; }
+    public string LanguageCode { get; private set; }
 
-    public IList<Localization> Localizations { get; }
+    public ICollection<Localization> Localizations { get; private set; }
 }

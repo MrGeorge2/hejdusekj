@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphServer.Migrations
 {
     [DbContext(typeof(LocalizationContext))]
-    [Migration("20220522202122_Localization")]
+    [Migration("20220522210105_Localization")]
     partial class Localization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,15 +47,19 @@ namespace GraphServer.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<long>("LanguageId1")
+                    b.Property<long>("LanguageId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Key")
                         .IsUnique();
 
-                    b.HasIndex("LanguageId1");
+                    b.HasIndex("LanguageId");
 
                     b.ToTable("Localization", (string)null);
                 });
@@ -64,7 +68,7 @@ namespace GraphServer.Migrations
                 {
                     b.HasOne("GraphServer.Models.Language", "Language")
                         .WithMany("Localizations")
-                        .HasForeignKey("LanguageId1")
+                        .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

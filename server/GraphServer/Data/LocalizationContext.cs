@@ -28,10 +28,6 @@ public class LocalizationContext : DbContext
             .HasIndex(x => x.Key)
             .IsUnique();
 
-        model.Entity<Localization>()
-        .HasOne(p => p.Language)
-        .WithMany(b => b.Localizations);
-
         model.Entity<Localization>().ToTable("Localization");
         model.Entity<Language>().ToTable("Language");
     }
