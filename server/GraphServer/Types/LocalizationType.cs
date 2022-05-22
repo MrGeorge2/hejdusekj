@@ -11,7 +11,7 @@ public class LocalizationType : InterfaceType<Localization>
         descriptor.Field(t => t.Id)
             .Type<NonNullType<IdType>>();
 
-        descriptor.Field(t => t.Code)
+        descriptor.Field(t => t.Key)
             .Type<NonNullType<StringType>>();
 
         descriptor.Field(t => t.Value)
