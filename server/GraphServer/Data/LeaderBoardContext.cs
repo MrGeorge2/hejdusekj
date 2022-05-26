@@ -1,10 +1,11 @@
+using GraphServer.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GraphServer.Data;
 
-public class LeaderBoardContext: DbContext{
+public class LeaderBoardsContext: DbContext{
 
-    public LeaderBoardContext(DbContextOptions<LeaderBoardContext> options): base(options) {}
+    public LeaderBoardsContext(DbContextOptions<LeaderBoardsContext> options): base(options) {}
 
-    
+    public DbSet<Leader> LeaderBoards { get; set; }
 }

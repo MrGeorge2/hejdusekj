@@ -1,22 +1,38 @@
+using GraphServer.Data;
 using GraphServer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraphServer.Services;
 
 
 public class LeaderBoardService : ILeaderBoardService
 {
-    public Task<Leader> AddToLeaderBoard(int page, int pageSize)
+    private readonly LeaderBoardsContext _leaderBoardContext;
+    public LeaderBoardService(LeaderBoardsContext context)
     {
-        throw new NotImplementedException();
+        _leaderBoardContext = context;
+    }
+    
+    public async Task<Leader?> AddToLeaderBoard(Leader leader)
+    {
+        await _leaderBoardContext.LeaderBoards.AddAsync(leader);
+        await _leaderBoardContext.SaveChangesAsync();
+        return await Task.FromResult(leader);
     }
 
-    public Task<Leader?> GetCurrentLeader()
+    public async Task<Leader?> GetCurrentLeader()
     {
-        throw new NotImplementedException();
+        return await _leaderBoardContext.LeaderBoards
+            .OrderByDescending(x => x.Score)
+            .FirstOrDefaultAsync();
     }
 
-    public Task<List<Leader>> GetLeaderBoard(int page, int pageSize)
+    public async Task<List<Leader>> GetLeaderBoard(int page, int pageSize)
     {
-        throw new NotImplementedException();
+        return await _leaderBoardContext.LeaderBoards
+            .OrderByDescending(x => x.Score)
+            .Skip(page * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
     }
 }

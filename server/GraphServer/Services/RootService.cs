@@ -11,5 +11,6 @@ public static class RootService
     public static void RegisterLocalServices(this IServiceCollection services)
     {
         services.AddTransient<ILocalizationService, LocalizationService>();
+        services.AddTransient<ILeaderBoardService, LeaderBoardService>();
     }
 }
