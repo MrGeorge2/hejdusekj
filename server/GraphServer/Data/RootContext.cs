@@ -13,6 +13,7 @@ public static class RootContext
     {
         services.RegisterLocalizationContecxt();
         services.RegisterLeaderBoardsContext();
+        services.AddSingleton<DBContexts>();
     }
 
     /// <summary>
@@ -22,25 +23,13 @@ public static class RootContext
     {
         using (var scope = app.Services.CreateScope())
         {
-            var localizationContext = scope.ServiceProvider.GetRequiredService<LocalizationContext>();
-            try
+            var dbContexts = scope.ServiceProvider.GetRequiredService<DBContexts>();
+            
+            foreach (var context in dbContexts.GetAllDbContexts())
             {
-                localizationContext.Database.Migrate();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+                context.Database.Migrate();
             }
 
-            var leaderBoardsContext = scope.ServiceProvider.GetRequiredService<LeaderBoardsContext>();
-            try
-            {
-                leaderBoardsContext.Database.Migrate();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
         }
     }
 

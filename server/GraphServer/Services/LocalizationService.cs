@@ -7,10 +7,9 @@ namespace GraphServer.Services;
 public class LocalizationService : ILocalizationService
 {
     private readonly LocalizationContext _localizationContext;
-    public LocalizationService(
-        LocalizationContext localizationContext)
+    public LocalizationService(DBContexts contexts)
     {
-        _localizationContext = localizationContext;
+        _localizationContext = (LocalizationContext)contexts.GetDbContext<LocalizationContextFacotry>();
     }
 
     /// <summary>

@@ -2,18 +2,16 @@
 using GraphServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GraphServer.Migrations
+namespace GraphServer.Migrations.LocalizationMigrations
 {
     [DbContext(typeof(LocalizationContext))]
-    [Migration("20220526155651_LeaderBoard")]
-    partial class LeaderBoard
+    partial class LocalizationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
