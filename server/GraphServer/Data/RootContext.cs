@@ -23,10 +23,24 @@ public static class RootContext
         using (var scope = app.Services.CreateScope())
         {
             var localizationContext = scope.ServiceProvider.GetRequiredService<LocalizationContext>();
-            localizationContext.Database.Migrate();
+            try
+            {
+                localizationContext.Database.Migrate();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             var leaderBoardsContext = scope.ServiceProvider.GetRequiredService<LeaderBoardsContext>();
-            leaderBoardsContext.Database.Migrate();
+            try
+            {
+                leaderBoardsContext.Database.Migrate();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 
