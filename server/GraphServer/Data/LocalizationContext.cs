@@ -25,8 +25,7 @@ public class LocalizationContext : DbContext
             .HasKey(x => x.Id);
 
         model.Entity<Localization>()
-            .HasIndex(x => x.Key)
-            .IsUnique();
+            .HasIndex(x => x.Key);
 
         model.Entity<Localization>().ToTable("Localization");
         model.Entity<Language>().ToTable("Language");

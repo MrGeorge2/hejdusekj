@@ -2,16 +2,18 @@
 using GraphServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GraphServer.Migrations.LocalizationMigrations
+namespace GraphServer.Migratons.LocalizationMigrations
 {
     [DbContext(typeof(LocalizationContext))]
-    partial class LocalizationContextModelSnapshot : ModelSnapshot
+    [Migration("20220528231413_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,8 +56,7 @@ namespace GraphServer.Migrations.LocalizationMigrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Key")
-                        .IsUnique();
+                    b.HasIndex("Key");
 
                     b.HasIndex("LanguageId");
 

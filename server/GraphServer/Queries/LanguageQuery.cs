@@ -1,31 +1,42 @@
+using GraphServer.Data;
 using GraphServer.Models;
 using GraphServer.Services;
 
 namespace GraphServer.Queries;
 
-public partial class Query
+[ExtendObjectType(typeof(QueryType))]
+public class LanguageQuery
 {
     /// <summary>
     /// Gets a language
     /// </summary>
-    public async Task<Language?> Language([Service] ILocalizationService localizationService, string languageCode, int page, int pageSize = 100)
+    [UseFirstOrDefault]
+    [UsePaging(MaxPageSize = 1)]
+    [UseProjection]
+    public IQueryable<Language?> Language([Service] ILocalizationService localizationService, string languageCode)
     {
-        return await localizationService.GetLanguageAsync(languageCode, page, pageSize);
+        return localizationService.GetLanguages().Where(x => x.LanguageCode == languageCode);
     }
 
     /// <summary>
     /// Gets a localizations
     /// </summary>
-    public async Task<IList<Localization>?> GetLocalizations([Service] ILocalizationService localizationService, string languageCode, int page, int pageSize)
+    [UseFirstOrDefault]
+    [UsePaging(MaxPageSize = 100)]
+    [UseProjection]
+    public IQueryable<Localization> GetLocalizations([Service] ILocalizationService localizationService, string languageCode)
     {
-        return await localizationService.GetLocalizationsAsync(languageCode, page, pageSize);
+        return localizationService.GetLocalizations(languageCode);
     }
 
     /// <summary>
     /// Get localization by language and localization key
     /// </summary>
-    public async Task<Localization?> GetLocalization([Service] ILocalizationService localizationService, string languageCode, string key)
+    [UseFirstOrDefault]
+    [UsePaging(MaxPageSize = 100)]
+    [UseProjection]
+    public IQueryable<Localization> GetLocalization([Service] ILocalizationService localizationService, string languageCode, string key)
     {
-        return await localizationService.GetLocalizationAsync(languageCode, key);
+        return localizationService.GetLocalization(languageCode, key);
     }
 }

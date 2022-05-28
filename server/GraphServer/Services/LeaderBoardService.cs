@@ -8,7 +8,7 @@ namespace GraphServer.Services;
 public class LeaderBoardService : ILeaderBoardService
 {
     private readonly LeaderBoardsContext _leaderBoardContext;
-    public LeaderBoardService(LeaderBoardsContext leaderBoardContext)
+    public LeaderBoardService([ScopedService]LeaderBoardsContext leaderBoardContext)
     {
         _leaderBoardContext = leaderBoardContext;
     }

@@ -32,8 +32,8 @@ namespace GraphServer.Migrations.LeaderBoardsMigrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
-                    b.Property<uint>("Score")
-                        .HasColumnType("int unsigned");
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

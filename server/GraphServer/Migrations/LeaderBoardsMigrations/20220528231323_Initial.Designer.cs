@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphServer.Migrations.LeaderBoardsMigrations
 {
     [DbContext(typeof(LeaderBoardsContext))]
-    [Migration("20220528183809_Initial")]
+    [Migration("20220528231323_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,10 +34,12 @@ namespace GraphServer.Migrations.LeaderBoardsMigrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
-                    b.Property<uint>("Score")
-                        .HasColumnType("int unsigned");
+                    b.Property<int>("Score")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Score");
 
                     b.ToTable("LeaderBoards");
                 });

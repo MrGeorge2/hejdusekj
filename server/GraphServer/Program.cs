@@ -1,4 +1,5 @@
 using GraphServer.Data;
+using GraphServer.Mutations;
 using GraphServer.Queries;
 using GraphServer.Services;
 
@@ -17,7 +18,14 @@ services.
 // Register graphql
 services
     .AddGraphQLServer()
-    .AddQueryType<Query>();
+    .AddQueryType<QueryType>()
+        .AddTypeExtension<LanguageQuery>()
+        .AddTypeExtension<LeaderBoardsQuery>()
+/*
+    .AddMutationType<MutationsType>()
+        .AddTypeExtension<LeaderBoardMutations>()
+        */
+    .AddProjections();
 
 var app = builder.Build();
 

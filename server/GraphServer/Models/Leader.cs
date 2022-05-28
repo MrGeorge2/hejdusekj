@@ -4,6 +4,14 @@ namespace GraphServer.Models;
 
 public class Leader : BaseModel
 {
+    public Leader()
+    {
+        // Default constructor for EF
+        NickName = String.Empty;
+        GameType = GameType.SNAKE;
+        Score = Int16.MinValue;
+    }
+
     public Leader(int score, GameType gameType, string nickName)
     {
         Score = score;
@@ -28,7 +36,7 @@ public class Leader : BaseModel
     /// Nickname of the player
     /// </summary>
     [Required(ErrorMessage = "NickName is required")]
-    [StringLength(20, MinimumLength = 3, ErrorMessage ="NickName has to have 3-20 characters")]
+    [StringLength(20, MinimumLength = 3, ErrorMessage = "NickName has to have 3-20 characters")]
     public string NickName { get; private set; }
 
 }

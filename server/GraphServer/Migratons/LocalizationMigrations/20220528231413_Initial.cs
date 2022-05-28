@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GraphServer.Migrations.LocalizationMigrations
+namespace GraphServer.Migratons.LocalizationMigrations
 {
     public partial class Initial : Migration
     {
@@ -59,8 +59,7 @@ namespace GraphServer.Migrations.LocalizationMigrations
             migrationBuilder.CreateIndex(
                 name: "IX_Localization_Key",
                 table: "Localization",
-                column: "Key",
-                unique: true);
+                column: "Key");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Localization_LanguageId",

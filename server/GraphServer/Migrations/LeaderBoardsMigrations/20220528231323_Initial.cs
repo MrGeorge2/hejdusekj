@@ -18,7 +18,7 @@ namespace GraphServer.Migrations.LeaderBoardsMigrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Score = table.Column<uint>(type: "int unsigned", nullable: false),
+                    Score = table.Column<int>(type: "int", nullable: false),
                     GameType = table.Column<int>(type: "int", nullable: false),
                     NickName = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4")
@@ -28,6 +28,11 @@ namespace GraphServer.Migrations.LeaderBoardsMigrations
                     table.PrimaryKey("PK_LeaderBoards", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LeaderBoards_Score",
+                table: "LeaderBoards",
+                column: "Score");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

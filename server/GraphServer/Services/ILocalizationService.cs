@@ -4,19 +4,18 @@ namespace GraphServer.Services;
 
 public interface ILocalizationService
 {
-
     /// <summary>
-    /// Get language
+    /// Get Languages as IQueryable
     /// </summary>
-    Task<Language?> GetLanguageAsync(string languageCode, int page, int pageSize, CancellationToken cancellationToken = default(CancellationToken));
-
-    /// <summary>
-    /// Gets the localization for the specified language.
-    /// </summary>
-    Task<IList<Localization>?> GetLocalizationsAsync(string languageCode, int page, int pageSize, CancellationToken cancellationToken = default(CancellationToken));
+    IQueryable<Language> GetLanguages();
 
     /// <summary>
     /// Gets the localization for the specified language.
     /// </summary>
-    Task<Localization?> GetLocalizationAsync(string languageCode, string key, CancellationToken cancellationToken = default(CancellationToken));
+    IQueryable<Localization> GetLocalizations(string languageCode);
+
+    /// <summary>
+    /// Gets the localization for the specified language.
+    /// </summary>
+    IQueryable<Localization> GetLocalization(string languageCode, string key);
 }
