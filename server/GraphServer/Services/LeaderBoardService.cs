@@ -8,9 +8,9 @@ namespace GraphServer.Services;
 public class LeaderBoardService : ILeaderBoardService
 {
     private readonly LeaderBoardsContext _leaderBoardContext;
-    public LeaderBoardService(DBContexts contexts)
+    public LeaderBoardService(LeaderBoardsContext leaderBoardContext)
     {
-        _leaderBoardContext = (LeaderBoardsContext)contexts.GetDbContext<LeaderBoardsContextFacotry>();
+        _leaderBoardContext = leaderBoardContext;
     }
     
     public async Task<Leader?> AddToLeaderBoard(Leader leader)

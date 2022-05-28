@@ -2,6 +2,7 @@
 using GraphServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphServer.Migrations.LeaderBoardsMigrations
 {
     [DbContext(typeof(LeaderBoardsContext))]
-    partial class LeaderBoardsContextModelSnapshot : ModelSnapshot
+    [Migration("20220528185622_ScoreIndex")]
+    partial class ScoreIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GraphServer.Migrations.LocalizationMigrations
 {
     [DbContext(typeof(LocalizationContext))]
-    [Migration("20220528181049_Initial")]
+    [Migration("20220528183822_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

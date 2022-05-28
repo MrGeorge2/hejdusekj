@@ -32,13 +32,3 @@ public class LocalizationContext : DbContext
         model.Entity<Language>().ToTable("Language");
     }
 }
-
-public class LocalizationContextFacotry : IDbContextFactory
-{
-    public DbContext DbContext { get; }
-
-    public LocalizationContextFacotry(LeaderBoardsContext dbContext)
-    {
-        DbContext = dbContext;
-    }
-}
