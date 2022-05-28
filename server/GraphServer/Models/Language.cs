@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace GraphServer.Models;
 
 
@@ -16,6 +18,10 @@ public class Language : BaseModel
         Localizations = new List<Localization>();
     }
 
+    /// <summary>
+    /// Language code
+    /// </summary>
+    [Required(ErrorMessage = "Language code is required")]
     public string LanguageCode { get; private set; }
 
     public ICollection<Localization> Localizations { get; private set; }
