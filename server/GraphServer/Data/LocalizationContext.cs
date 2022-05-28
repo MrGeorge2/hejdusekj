@@ -5,10 +5,12 @@ namespace GraphServer.Data;
 
 public class LocalizationContext : DbContext
 {
+    #nullable disable
     public LocalizationContext(DbContextOptions<LocalizationContext> options)
         : base(options)
     {
     }
+    #nullable enable
 
     public DbSet<Localization> Localizations { get; set; }
     public DbSet<Language> Languages { get; set; }
