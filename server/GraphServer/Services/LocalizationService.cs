@@ -13,6 +13,57 @@ public class LocalizationService : ILocalizationService
     }
 
     /// <summary>
+    /// Create a new language
+    /// </summary>
+    /// <param name="languageCode"></param>
+    /// <returns></returns>
+    public async Task<Language> CreateLanguageAsync(string languageCode)
+    {
+        var language = new Language(languageCode);
+        
+        _localizationContext.Add(language);
+        
+        await _localizationContext.SaveChangesAsync();
+        
+        return language;
+    }
+
+    /// <summary>
+    /// Create a new localization
+    /// </summary>
+    /// <param name="localization"></param>
+    /// <returns></returns>
+    public async Task<Localization> CreateLocalizationAsync(Localization localization)
+    {
+        _localizationContext.Add(localization);
+        await _localizationContext.SaveChangesAsync();
+        return localization;
+    }
+
+    /// <summary>
+    /// Check if the language exists.
+    /// </summary>
+    /// <param name="languageCode"></param>
+    /// <returns></returns>
+    public async Task<bool> LanguageExistsAsync(string languageCode)
+    {
+        return await _localizationContext.Languages
+                .AnyAsync(x => x.LanguageCode == languageCode);
+    }
+
+    /// <summary>
+    /// Checks if the localization exists.
+    /// </summary>
+    /// <param name="languageCode"></param>
+    /// <param name="key"></param>
+    /// <returns></returns>
+    public async Task<bool> LocalizationExistsAsync(string languageCode, string key)
+    {
+        return await _localizationContext.Localizations
+                .AnyAsync(x => x.Language.LanguageCode == languageCode && x.Key == key);
+    }
+
+    /// <summary>
     /// Get language
     /// </summary>
     public IQueryable<Language> GetLanguages()
@@ -36,5 +87,25 @@ public class LocalizationService : ILocalizationService
     {
         return _localizationContext.Localizations
             .Where(x => x.Language.LanguageCode == languageCode);
+    }
+
+    /// <summary>
+    /// Get language by id.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<Language?> GetLanguage(long id)
+    {
+        return await _localizationContext.Languages.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    /// <summary>
+    /// Get language by languageCode
+    /// </summary>
+    /// <param name="languageCode"></param>
+    /// <returns></returns>
+    public async Task<Language?> GetLanguage(string languageCode)
+    {
+        return await _localizationContext.Languages.FirstOrDefaultAsync(x => x.LanguageCode == languageCode);
     }
 }

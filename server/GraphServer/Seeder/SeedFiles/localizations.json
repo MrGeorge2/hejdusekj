@@ -1,0 +1,24 @@
+{
+    "localizations": [
+        {
+            "languageCode": "cs",
+            "key": "github",
+            "value": "Github"
+        },
+        {
+            "languageCode": "en",
+            "key": "github",
+            "value": "Github"
+        },
+        {
+            "languageCode": "cs",
+            "key": "cv",
+            "value": "Životopis"
+        },
+        {
+            "languageCode": "en",
+            "key": "cv",
+            "value": "CV"
+        }
+    ]
+}

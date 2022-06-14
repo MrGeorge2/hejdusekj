@@ -18,7 +18,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+  </ItemGroup>
+
+    <ItemGroup>
+      <None Update="./Seeder/SeedFiles/localizations.json">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
   </ItemGroup>
 
 </Project>

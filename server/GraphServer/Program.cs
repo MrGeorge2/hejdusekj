@@ -1,6 +1,7 @@
 using GraphServer.Data;
 using GraphServer.Mutations;
 using GraphServer.Queries;
+using GraphServer.Seeder;
 using GraphServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,9 @@ services
 // Register local services
 services.
     RegisterLocalServices();
+
+services
+    .RegisterSeeders();
 
 // Register graphql
 services
@@ -29,6 +33,7 @@ services
 var app = builder.Build();
 
 app.MigrateDatabases();
+app.SeedDatabase();
 
 app.MapGraphQL();
 app.Run();
