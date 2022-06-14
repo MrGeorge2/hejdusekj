@@ -18,7 +18,7 @@ const initialState: types.SnakeGameStateType = {
     isStarted: false
 }
 
-export const snakeReducer: Reducer<types.SnakeGameStateType> = (state  = initialState, action: types.SnakeActions): Readonly<types.SnakeGameStateType> => {
+export const snakeReducer: Reducer<types.SnakeGameStateType, types.SnakeActions> = (state  = initialState, action: types.SnakeActions): Readonly<types.SnakeGameStateType> => {
     switch (action.type) {
 
         case (types.SET_BLOCKS): {

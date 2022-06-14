@@ -11,12 +11,18 @@ export type LocalizatinState = {
 
 /** Actions  */
 
-export const ADDLOC = "localization/ADD";
+export const ADD_LOCALIZATION = "localization/ADD";
 
-export type AddType = {
-    type: typeof ADDLOC
-    payload?: number
+export type AddLocalizationType = {
+    type: typeof ADD_LOCALIZATION
+    payload: Localization[]
 }
 
+export const SWITCH_ACTIVE_LANGUAGE = "localization/SWITCH_ACTIVE_LANGUAGE";
 
-export type LocalizationActions = AddType ;
+export type SwitchActiveLanguageType = {
+    type: typeof SWITCH_ACTIVE_LANGUAGE
+    payload: string
+}
+
+export type LocalizationActions = AddLocalizationType | SwitchActiveLanguageType;

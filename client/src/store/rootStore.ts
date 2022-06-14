@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { counterReducer } from "./counter/reducers";
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from "../saga/rootSaga";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { snakeReducer } from "./snake/reducers";
-import { languageReducer } from "./localization/reducers";
+//import { languageReducer } from "./localization/reducers";
 
 
 function configureAppStore() {
@@ -12,9 +11,8 @@ function configureAppStore() {
 
     const store = configureStore({
         reducer: {
-            counter: counterReducer,
+  //          language: languageReducer,
             snake: snakeReducer,
-            language: languageReducer,
         },
         middleware: [sagaMiddleware],
     });
