@@ -21,10 +21,9 @@ services
     .AddQueryType<QueryType>()
         .AddTypeExtension<LanguageQuery>()
         .AddTypeExtension<LeaderBoardsQuery>()
-/*
     .AddMutationType<MutationsType>()
         .AddTypeExtension<LeaderBoardMutations>()
-        */
+
     .AddProjections();
 
 var app = builder.Build();
