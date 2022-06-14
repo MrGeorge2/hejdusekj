@@ -1,6 +1,5 @@
 using GraphServer.Models;
 using GraphServer.Services;
-using GraphServer.Types;
 
 namespace GraphServer.Mutations;
 
@@ -11,16 +10,8 @@ public class LeaderBoardMutations
     /// <summary>
     /// Add new leader
     /// </summary>
-    public async Task<Leader?> AddNewLeader([Service] ILeaderBoardService leaderBoardService, LeaderType leader)
+    public async Task<Leader> AddNewLeader([Service] ILeaderBoardService leaderBoardService, Leader leader)
     {
-        throw new NotImplementedException();
-        /*
-        var newLeader = new Leader{
-
-            Score = leader.
-        };
-
         return await leaderBoardService.AddToLeaderBoard(leader);
-        */
     }
 }
