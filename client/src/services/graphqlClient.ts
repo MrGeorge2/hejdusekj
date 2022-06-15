@@ -1,3 +1,4 @@
+/*
 import {
     ApolloClient,
     InMemoryCache,
@@ -20,10 +21,12 @@ import {
      * Return the ApolloClient instance.
      * @returns 
      */
-    public getClient() {
+    /*
+    public static getClient() {
         if (!GraphQLClient.client) {
             new GraphQLClient();
         }
         return GraphQLClient.client;
     }
 }
+*/

@@ -3,6 +3,7 @@ import { SnakeGame } from "./components/snakeGame/snake";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React from "react";
 
 const theme = createTheme({
   palette: {
@@ -25,6 +26,12 @@ const theme = createTheme({
 });
 
 function App() {
+  React.useEffect(() =>{
+    console.log(process.env.NODE_ENV);
+    console.log(process.env.PUBLIC_URL);
+    console.log(process.env.TZ);
+  },
+  []);
   return (
     <ThemeProvider theme={theme}>
       <Layout>

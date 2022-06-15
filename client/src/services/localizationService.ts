@@ -1,4 +1,4 @@
-import { GraphQLClient } from './graphqlClient';
+//import { GraphQLClient } from './graphqlClient';
 
 /*
 export async function fetchLocalizations() {
