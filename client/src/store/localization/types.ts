@@ -27,12 +27,12 @@ export type SwitchActiveLanguageType = {
 export type LocalizationActions = any | AddLocalizationType | SwitchActiveLanguageType;
 
 // Actions creators
-export const LOAD_LOCALIZATION = "localization/LOAD_LOCALIZATION";
+export const FECH_LOCALIZATION = "localization/LOAD_LOCALIZATION";
 
-export type LoadLocalizationType = {
-    type: typeof LOAD_LOCALIZATION,
+export type FetchLocalizationType = {
+    type: typeof FECH_LOCALIZATION,
     payload: string // language code
 }
 
 
-export type LocalizationActionCreatorType = LoadLocalizationType;
+export type LocalizationActionCreatorType = FetchLocalizationType;
