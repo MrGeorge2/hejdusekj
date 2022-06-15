@@ -1,4 +1,3 @@
-import { Reducer } from 'redux';
 import * as types from './types';
 
 
@@ -6,18 +5,18 @@ const initialState: types.LocalizatinState = {
     localizations: [],
     activeLanguage: 'cs'
 }
-/*
-export const languageReducer: Reducer<types.LocalizatinState> = (state = initialState, action: types.LocalizationActions): Readonly<types.LocalizatinState> => {
+
+export const languageReducer = (state = initialState, action: types.LocalizationActions): Readonly<types.LocalizatinState> => {
     switch (action.type) {
 
-        case types.ADD_LOCALIZATION:{
+        case types.ADD_LOCALIZATION: {
             return {
                 ...state,
                 localizations: [...state.localizations, ...action.payload]
             }
         }
 
-        case types.SWITCH_ACTIVE_LANGUAGE:{
+        case types.SWITCH_ACTIVE_LANGUAGE: {
             return {
                 ...state,
                 activeLanguage: action.payload
@@ -25,7 +24,7 @@ export const languageReducer: Reducer<types.LocalizatinState> = (state = initial
         }
 
         default: {
-            return {...state}
+            return { ...state }
         }
-    }   
-}*/
+    }
+}

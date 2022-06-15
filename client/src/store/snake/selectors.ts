@@ -1,4 +1,3 @@
-import snakeChangeDirectionWatcher from "../../saga/snake/snakeSaga";
 import { RootState } from "../rootStore";
 
 export const selectSnakeBlocks = (state: RootState) => {

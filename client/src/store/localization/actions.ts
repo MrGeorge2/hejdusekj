@@ -3,7 +3,7 @@ import * as types from './types'
 /**
  * Add localization
  */
-export const AddLocalization = (payload: types.Localization[]): types.AddLocalizationType => {
+export const AddLocalization = (payload: readonly types.Localization[]): types.AddLocalizationType => {
     return {
         type: types.ADD_LOCALIZATION,
         payload: payload

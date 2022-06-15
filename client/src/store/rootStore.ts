@@ -3,7 +3,8 @@ import createSagaMiddleware from 'redux-saga'
 import rootSaga from "../saga/rootSaga";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { snakeReducer } from "./snake/reducers";
-//import { languageReducer } from "./localization/reducers";
+import { languageReducer } from "./localization/reducers";
+import { leaderReducer } from "./leader/reducers";
 
 
 function configureAppStore() {
@@ -11,8 +12,9 @@ function configureAppStore() {
 
     const store = configureStore({
         reducer: {
-  //          language: languageReducer,
+            leader: leaderReducer,
             snake: snakeReducer,
+            language: languageReducer,
         },
         middleware: [sagaMiddleware],
     });
