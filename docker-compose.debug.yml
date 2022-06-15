@@ -8,8 +8,7 @@ services:
       dockerfile: ./debug.Dockerfile
     environment:
       - NODE_ENV=development
-      - BACKEND_HOST=server
-      - BACKEND_PORT=8080
+      - PUBLIC_URL=http://localhost
     ports:
       - 3000:3000
       - 9229:9229
@@ -49,6 +48,17 @@ services:
       - database_volume:/var/lib/mysql
     ports: 
       - 3306:3306
+  
+  proxy:
+    image: nginx:stable
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - ./volumes/proxyDebug:/etc/nginx/conf.d:ro
+    depends_on:
+      - client
+      - server
 
 volumes:
   database_volume:
