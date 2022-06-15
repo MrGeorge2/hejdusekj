@@ -1,4 +1,3 @@
-/*
 import {
     ApolloClient,
     InMemoryCache,
@@ -13,7 +12,7 @@ import {
         const cache = new InMemoryCache();
         GraphQLClient.client = new ApolloClient({
             cache,
-            uri: "http://localhost:80/graphql",
+            uri: "/graphql",
         });
     }
 
@@ -21,7 +20,6 @@ import {
      * Return the ApolloClient instance.
      * @returns 
      */
-    /*
     public static getClient() {
         if (!GraphQLClient.client) {
             new GraphQLClient();
@@ -29,4 +27,3 @@ import {
         return GraphQLClient.client;
     }
 }
-*/
