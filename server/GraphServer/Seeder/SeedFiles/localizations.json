@@ -12,6 +12,17 @@
         },
         {
             "languageCode": "cs",
+            "key": "linkedin",
+            "value": "Linkedin"
+        },
+
+        {
+            "languageCode": "en",
+            "key": "linkedin",
+            "value": "Linkedin"
+        },
+        {
+            "languageCode": "cs",
             "key": "cv",
             "value": "Životopis"
         },
@@ -19,6 +30,16 @@
             "languageCode": "en",
             "key": "cv",
             "value": "CV"
+        },
+        {
+            "languageCode": "cs",
+            "key": "games",
+            "value": "Hry"
+        },
+        {
+            "languageCode": "en",
+            "key": "games",
+            "value": "Games"
         }
     ]
 }
