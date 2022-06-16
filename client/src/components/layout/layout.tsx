@@ -1,5 +1,5 @@
 import React from "react"
-import { IBaseProps } from "../atoms/base/types"
+import { IBaseProps } from "../base/types"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,19 +12,20 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import './layout.scss';
+import { Loc } from "../localization/loc";
 
 const pages = [
     {
-        href:     'games', 
-        page:     'Games'
+        href: 'games',
+        page: 'games'
     },
     {
-        href:     'https://cz.linkedin.com/in/jirihejdusek', 
-        page:     'Linkedin'
+        href: 'https://cz.linkedin.com/in/jirihejdusek',
+        page: 'linkedin'
     },
     {
-        href:     'https://github.com/MrGeorge2/hejdusekj', 
-        page:     'Github'
+        href: 'https://github.com/MrGeorge2/hejdusekj',
+        page: 'github'
     },
 ];
 
@@ -47,7 +48,7 @@ const Header: React.FunctionComponent = (
 
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box sx={{ height: "100%", display: {xs: 'none', md: "flex"} }}>
+                    <Box sx={{ height: "100%", display: { xs: 'none', md: "flex" } }}>
                         <img className="navLogo" src={process.env.PUBLIC_URL + '/logo/logoSmall.svg'} alt="logo"></img>
                     </Box>
 
@@ -82,7 +83,9 @@ const Header: React.FunctionComponent = (
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page.page} onClick={handleCloseNavMenu} href={page.href}>
-                                    <Typography textAlign="center" >{page.page}</Typography>
+                                    <Typography textAlign="center" >
+                                        <Loc locKey={page.page} />
+                                    </Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -108,7 +111,7 @@ const Header: React.FunctionComponent = (
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                                 href={page.href}
                             >
-                                {page.page}
+                                <Loc locKey={page.page} />
                             </Button>
                         ))}
                     </Box>
