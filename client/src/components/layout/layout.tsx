@@ -44,7 +44,7 @@ const Header: React.FunctionComponent = (
     };
 
     return (
-        <AppBar>
+        <AppBar sx={{position: "static"}}>
 
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
