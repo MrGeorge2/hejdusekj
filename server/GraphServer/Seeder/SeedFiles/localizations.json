@@ -23,16 +23,6 @@
         },
         {
             "languageCode": "cs",
-            "key": "cv",
-            "value": "Životopis"
-        },
-        {
-            "languageCode": "en",
-            "key": "cv",
-            "value": "CV"
-        },
-        {
-            "languageCode": "cs",
             "key": "games",
             "value": "Hry"
         },
@@ -40,6 +30,106 @@
             "languageCode": "en",
             "key": "games",
             "value": "Games"
+        },
+        {
+            "languageCode": "cs",
+            "key": "aboutMe",
+            "value": "O MNĚ"
+        },
+        {
+            "languageCode": "en",
+            "key": "aboutMe",
+            "value": "ABOUT ME"
+        },
+        {
+            "languageCode": "cs",
+            "key": "aboutMe.Hi",
+            "value": "Ahoj!"
+        },
+        {
+            "languageCode": "en",
+            "key": "aboutMe.Hi",
+            "value": "Hi!"
+        },
+        {
+            "languageCode": "cs",
+            "key": "aboutMe.Iam",
+            "value": "Jmenuji se Jirka a jsem backend vývojář."
+        },
+        {
+            "languageCode": "en",
+            "key": "aboutMe.Iam",
+            "value": "My name is Jirka and I am backend developer."
+        },
+        {
+            "languageCode": "cs",
+            "key": "aboutMe.Iam.Desc",
+            "value": "Jsem velkým nadšencem do nových technologií a vždy se snažím učit něco nového"
+        },
+        {
+            "languageCode": "en",
+            "key": "aboutMe.Iam.Desc",
+            "value": "I am a big fan of new technologies and I am always trying to learn new things."
+        },
+        {
+            "languageCode": "cs",
+            "key": "ThisPage.WhatCanYouFindHere",
+            "value": "Co zde můžete najít?"
+        },
+        {
+            "languageCode": "en",
+            "key": "ThisPage.WhatCanYouFindHere",
+            "value": "What can you find here?"
+        },
+        {
+            "languageCode": "cs",
+            "key": "ThisPage.Snake",
+            "value": "Snake"
+        },
+        {
+            "languageCode": "en",
+            "key": "ThisPage.Snake",
+            "value": "Snake"
+        },
+        {
+            "languageCode": "cs",
+            "key": "ThisPage.Snake.Desc",
+            "value": "Hra snake je vytvořená v pomocí Reactu, Reduxu, Redux-Saga a CSS gridu. Společně s žebříčkem nejlepších hráčů."
+        },
+        {
+            "languageCode": "en",
+            "key": "ThisPage.Snake.Desc",
+            "value": "Snake game is created using React, Redux, Redux-Saga and CSS grid. Together with the Leaderboard."
+        },
+        {
+            "languageCode": "cs",
+            "key": "ThisPage.Localization",
+            "value": "Lokalizace"
+        },
+        {
+            "languageCode": "en",
+            "key": "ThisPage.Localization",
+            "value": "Localizatoin"
+        },
+        {
+            "languageCode": "cs",
+            "key": "ThisPage.Localization.Desc",
+            "value": "Tato stránka je plně lokalizovaná. Pro lokalizace nebyla použita žádná knihovna."
+        },
+        {
+            "languageCode": "en",
+            "key": "ThisPage.Localization.Desc",
+            "value": "This page is fully localized. For localization was used no library."
+        },
+        {
+            "languageCode": "cs",
+            "key": "Skills.WhatIUse",
+            "value": "Jaké technologie používám."
+        },
+        {
+            "languageCode": "en",
+            "key": "Skills.WhatIUse",
+            "value": "What technologies I use."
         }
     ]
 }

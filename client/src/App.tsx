@@ -3,7 +3,7 @@ import { SnakeGame } from "./components/snakeGame/snake";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CV } from "./components/cv/cv";
+import { HomePage } from "./components/aboutMe/aboutMe";
 
 const theme = createTheme({
   palette: {
@@ -31,7 +31,7 @@ function App() {
       <Layout>
         <BrowserRouter>
           <Routes>
-          <Route path="/" element={<CV />} />
+          <Route path="/" element={<HomePage />} />
             <Route path="/games" element={<SnakeGame />} />
           </Routes>
         </BrowserRouter>

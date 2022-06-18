@@ -17,7 +17,7 @@ import { Loc } from "../localization/loc";
 const pages = [
     {
         href: '/',
-        page: 'cv'
+        page: 'aboutMe'
     },
     {
         href: 'games',
