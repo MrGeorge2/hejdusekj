@@ -9,8 +9,6 @@ services:
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: production
-    ports:
-      - 3000:3000
   
   server:
     image: server
@@ -19,9 +17,13 @@ services:
       context: server
       dockerfile: ./Dockerfile
     environment:
-      DB_PASSWORD: supersecret
-    ports:
-      - 8080:8080
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+      - MARIADB_HOST=database
+      - MARIADB_PORT=3306
+      - MARIADB_USER=root
+      - MARIADB_PASSWORD=supersecret
+      - MARIADB_DATABASE=GraphServer
 
   database:
     image: mariadb:10.7.3
@@ -31,7 +33,16 @@ services:
       MARIADB_ROOT_PASSWORD: supersecret
     volumes:
       - database_volume:/var/lib/mysql
-    ports: 
-      - 3306:3306
+
+  proxy:
+    image: nginx:stable-alpine
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - ./volumes/proxy:/etc/nginx/conf.d:ro
+    depends_on:
+      - client
+      - server
 volumes:
   database_volume:
