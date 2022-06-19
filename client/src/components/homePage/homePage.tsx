@@ -3,6 +3,8 @@ import { Container, Grid } from "../grid/grid";
 import { Loc } from "../localization/loc";
 import { SvgThumbNail } from "../svgThumbNail/svgThumbNail";
 
+import './homePage.scss';
+
 export const HomePage: React.FunctionComponent = () => {
     return (
         <Container fluid={false}>
@@ -67,10 +69,7 @@ export const Skills: React.FunctionComponent = () => {
         "redux-saga",
         "docker",
     ];
-
-    React.useEffect(() => {
-        console.log(process.env.PUBLIC_URL)
-    }, [])
+    
     return (
         <Container fluid>
             <div className="skills">

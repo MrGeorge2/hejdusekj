@@ -4,8 +4,8 @@ import './grid.scss';
 
 
 export const Container: React.FunctionComponent<IContainerProps> = ({
-    id = "",
-    className = "",
+    id = undefined,
+    className = undefined,
     onClick = () => { },
     style = {},
     children,
@@ -14,7 +14,7 @@ export const Container: React.FunctionComponent<IContainerProps> = ({
     return (
         <div
             id={id}
-            className={`container ${className} ${fluid ? 'container-fluid' : ''}`}
+            className={`container ${className ?? ""} ${fluid ? 'container-fluid' : ''}`}
             style={style}
             onClick={onClick}
         >
