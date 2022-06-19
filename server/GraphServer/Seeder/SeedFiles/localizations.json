@@ -130,6 +130,16 @@
             "languageCode": "en",
             "key": "Skills.WhatIUse",
             "value": "What technologies I use."
+        },
+        {
+            "languageCode": "cs",
+            "key": "games.Header",
+            "value": "Malé zpestření v podobě arkádovek"
+        },
+        {
+            "languageCode": "en",
+            "key": "games.Header",
+            "value": "Small Break in the form of arcade games"
         }
     ]
 }

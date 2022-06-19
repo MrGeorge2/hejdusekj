@@ -78,10 +78,8 @@ export const Skills: React.FunctionComponent = () => {
                 </div>
                 <div className="skills__content">
                     <Grid
-                        XS={{ size: 1, gap: 1 }}
-                        S={{ size: 3, gap: 1 }}
-                        L={{ size: 6, gap: 1 }}
-                        XL={{ size: 9, gap: 1 }}
+                        XS={{ size: 1, gap: 4 }}
+                        L={{ size: 2, gap: 4 }}
                     >
                         {
                             technologiesSrc.map(techSrc => {

@@ -7,7 +7,10 @@ import { RootState } from "../rootStore";;
  * @returns 
  */
 export const selectAllLeaders = (state: RootState, gameType: string) => {
-    const leaders = state.leader.leaders.filter(leader => leader.gameType === gameType);
+    const leaders = state.leader.leaders
+        .filter(leader => leader.gameType === gameType)
+        .sort((a, b) => b.score - a.score);
+        
     return leaders;
 }
 
