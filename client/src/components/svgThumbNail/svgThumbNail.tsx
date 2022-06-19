@@ -9,10 +9,11 @@ export interface SvgThumbNail extends IBaseProps{
 
 export const SvgThumbNail: React.FunctionComponent<SvgThumbNail> = ({
     src,
-    alt
+    alt,
+    className = ""
 }) => {
     return (
-        <div className='thumbNailContainer'>
+        <div className={`thumbNailContainer ${className}`}>
             <img className='thumbNail' src={src} alt={alt}/>
         </div>
     )
