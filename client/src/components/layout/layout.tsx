@@ -10,7 +10,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import './layout.scss';
 import { Loc } from "../localization/loc";
 
@@ -53,7 +52,7 @@ const Header: React.FunctionComponent = (
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box sx={{ height: "100%", display: { xs: 'none', md: "flex" } }}>
-                        <img className="navLogo" src={process.env.PUBLIC_URL + '/logo/logoSmall.svg'} alt="logo"></img>
+                        <img className="navLogo" src={process.env.PUBLIC_URL + '/img/logo/logoSmallTransparent.svg'} alt="logo"></img>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -104,7 +103,7 @@ const Header: React.FunctionComponent = (
                             flexGrow: 1,
                         }}
                     >
-                        <img className="navLogo" src={process.env.PUBLIC_URL + '/logo/logoSmall.svg'} alt="logo"></img>
+                        <img className="navLogo" src={process.env.PUBLIC_URL + '/img/logo/logoSmallTransparent.svg'} alt="logo"></img>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -132,7 +131,6 @@ export const Layout: React.FunctionComponent<IBaseProps> = ({
         <React.Fragment>
             <Header />
             {children}
-
         </React.Fragment>
     )
 }

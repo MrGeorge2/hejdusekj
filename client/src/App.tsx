@@ -3,7 +3,7 @@ import { SnakeGame } from "./components/snakeGame/snake";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { HomePage } from "./components/aboutMe/aboutMe";
+import { HomePage } from "./components/homePage/aboutMe";
 
 const theme = createTheme({
   palette: {

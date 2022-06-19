@@ -1,12 +1,14 @@
+import path from "path";
 import React from "react";
 import { Loc } from "../localization/loc";
+import { SvgThumbNail } from "../svgThumbNail/svgThumbNail";
 
 export const HomePage: React.FunctionComponent = () => {
     return (
         <React.Fragment>
-            <AboutMe/>
-            <ThisPage/>
-            <Skills/>
+            <AboutMe />
+            <ThisPage />
+            <Skills />
         </React.Fragment>
     )
 }
@@ -50,10 +52,38 @@ export const ThisPage: React.FunctionComponent = () => {
 }
 
 export const Skills: React.FunctionComponent = () => {
-    return(
+    const technologiesSrc = [
+        "dotnet",
+        "python",
+        "mariadb",
+        "mssql",
+        "typescript",
+        "react",
+        "redux",
+        "redux-saga",
+        "docker",
+    ];
+
+    React.useEffect(() => {
+        console.log(process.env.PUBLIC_URL)
+    }, [])
+    return (
         <div className="skills">
             <div className="skills__header">
                 <h1><Loc locKey="Skills.WhatIUse" /></h1>
+            </div>
+            <div className="skills__content">
+                {
+                    technologiesSrc.map(techSrc => {
+                        return (
+                            <SvgThumbNail
+                                key={techSrc}
+                                src={`${process.env.PUBLIC_URL}/img/skills/${techSrc}.svg`}
+                                alt={techSrc}
+                            />
+                        )
+                    })
+                }
             </div>
         </div>
     )

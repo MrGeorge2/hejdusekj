@@ -64,12 +64,12 @@
         {
             "languageCode": "cs",
             "key": "aboutMe.Iam.Desc",
-            "value": "Jsem velkým nadšencem do nových technologií a vždy se snažím učit něco nového"
+            "value": "Jsem velkým nadšencem do nových technologií a vždy se snažím učit něco nového. Jelikož mám na svém githubu většinu projektů privátních, rozhodl jsem se alespoń vytvořit si svůj web."
         },
         {
             "languageCode": "en",
             "key": "aboutMe.Iam.Desc",
-            "value": "I am a big fan of new technologies and I am always trying to learn new things."
+            "value": "I am a big fan of new technologies and I am always trying to learn new things. Because majority of my projects on github are private, I decided to create my own web."
         },
         {
             "languageCode": "cs",
