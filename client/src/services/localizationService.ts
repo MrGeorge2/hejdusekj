@@ -37,6 +37,12 @@ export async function* fetchLocalizationsAsync(languageCode: string): AsyncGener
             })
         }).then(r => r.json());
 
+        // TODO better logging
+        if (fetchedLocalizations.errors){
+            console.log(fetchedLocalizations.errors);
+            throw new Error(fetchedLocalizations.errors[0].message);
+        }
+
         hasNextPage = fetchedLocalizations.data.localizations.pageInfo.hasNextPage;
         after = fetchedLocalizations.data.localizations.pageInfo.endCursor;
 

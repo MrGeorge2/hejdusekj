@@ -1,3 +1,5 @@
+import { GameTypes } from "../../components/games/gameTypes";
+
 export type Leader = {
     score: number;
     gameType: string;
@@ -27,4 +29,11 @@ export type AddNewLeaderType = {
     payload: Readonly<Leader>
 }
 
-export type LeaderActionCreatorType = AddNewLeaderType;
+/** Fetch leaders */
+export const FETCH_LEADERS = "leaders/FETCH_LEADERBOARD";
+export type FetchLeadersType = {
+    type: typeof FETCH_LEADERS,
+    payload: GameTypes
+}
+
+export type LeaderActionCreatorType = AddNewLeaderType | FetchLeadersType;

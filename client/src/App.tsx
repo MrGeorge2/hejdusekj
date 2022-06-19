@@ -1,10 +1,11 @@
 import { Layout } from "./components/layout/layout";
-import { SnakeGame } from "./components/snakeGame/snake";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { HomePage } from "./components/homePage/homePage";
 import { Games } from "./components/games/games";
+import React from "react";
+import { addNewLeaderAsync, fetchLeaderBoard } from "./services/leaderBoardService";
+import { GameTypes } from "./components/games/gameTypes";
 
 const theme = createTheme({
   palette: {
@@ -27,6 +28,18 @@ const theme = createTheme({
 });
 
 function App() {
+  React.useEffect(() => {
+    (
+      async () => {
+        const leaderBoard = await fetchLeaderBoard(GameTypes.SNAKE);
+        for await (const leader of leaderBoard){
+          console.log(leader);
+        }
+      }
+    )()
+    
+  }, []);
+  
   return (
     <ThemeProvider theme={theme}>
       <Layout>
