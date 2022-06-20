@@ -26,11 +26,11 @@ services:
       - MARIADB_DATABASE=GraphServer
 
   database:
-    image: mariadb:10.7.3
+    image: mariadb
     restart: always
     environment:
-      MARIADB_USER: root
-      MARIADB_ROOT_PASSWORD: supersecret
+      - MARIADB_USER=root
+      - MARIADB_ROOT_PASSWORD=supersecret
     volumes:
       - database_volume:/var/lib/mysql
 
