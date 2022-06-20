@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import './layout.scss';
 import { Loc } from "../localization/loc";
+import { LanguageSwapper } from "../languageSwapper/languageSwapper";
 
 const pages = [
     {
@@ -51,8 +52,16 @@ const Header: React.FunctionComponent = (
 
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Box sx={{ height: "100%", display: { xs: 'none', md: "flex" } }}>
-                        <img className="navLogo" src={process.env.PUBLIC_URL + '/img/logo/logoSmallTransparent.svg'} alt="logo"></img>
+                    <Box 
+                        component="a"
+                        href="/"
+                        sx={{ height: "100%", display: { xs: 'none', md: "flex" } }}
+                    >
+                        <img 
+                            className="navLogo" 
+                            src={process.env.PUBLIC_URL + '/img/logo/logoSmallTransparent.svg'} 
+                            alt="logo">
+                        </img>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -117,6 +126,10 @@ const Header: React.FunctionComponent = (
                                 <Loc locKey={page.page} />
                             </Button>
                         ))}
+                    </Box>
+
+                    <Box sx={{ height: "100%" }}>
+                        <LanguageSwapper/>
                     </Box>
                 </Toolbar>
             </Container>

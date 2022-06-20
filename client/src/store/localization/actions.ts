@@ -19,3 +19,32 @@ export const SwitchActiveLanguage = (payload: string): types.SwitchActiveLanguag
         payload: payload
     }
 }
+
+/**
+ * Action creators
+ */
+
+
+/**
+ * Switch active language
+ * @param payload 
+ * @returns 
+ */
+export const SwitchActiveLanguageActionCreator = (payload: string): types.SwitchLocalizationActionCreatorType => {
+    return {
+        type: types.SWITCH_LOCALIZATION_ACTION_CREATOR,
+        payload: payload
+    }
+}
+
+/**
+ * Fetch localization
+ * @param payload 
+ * @returns 
+ */
+export const FetchLocalization = (payload: string): types.FetchLocalizationType => {
+    return {
+        type: types.FECH_LOCALIZATION,
+        payload: payload
+    }
+}

@@ -18,3 +18,32 @@ export const selectLocalization = (state: RootState, locCode: string) => {
     
     return localization ? localization.value : '';
 }
+
+
+/**
+ * Select active language
+ * @param state 
+ * @returns 
+ */
+export const selectActiveLanguage = (state: RootState) => {
+    return state.language.activeLanguage;
+}
+
+/**
+ * Checks if localization is loaded
+ * @param state 
+ * @param languageCode 
+ * @returns 
+ */
+export const selectIsLanguageFetched = (state: RootState, languageCode: string) => {
+    return state.language.localizations.some(x => x.language === languageCode);
+}
+
+/**
+ * Select whole language state
+ * @param state 
+ * @returns 
+ */
+export const selectLanguageState = (state: RootState) => {
+    return state.language;
+}

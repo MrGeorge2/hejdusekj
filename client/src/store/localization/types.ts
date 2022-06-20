@@ -34,5 +34,10 @@ export type FetchLocalizationType = {
     payload: string // language code
 }
 
+export const SWITCH_LOCALIZATION_ACTION_CREATOR = "localization/SWITCH_LOCALIZATION";
+export type SwitchLocalizationActionCreatorType = {
+    type: typeof SWITCH_LOCALIZATION_ACTION_CREATOR,
+    payload: string // language code
+}
 
 export type LocalizationActionCreatorType = FetchLocalizationType;
