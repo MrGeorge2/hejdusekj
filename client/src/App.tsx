@@ -28,18 +28,6 @@ const theme = createTheme({
 });
 
 function App() {
-  React.useEffect(() => {
-    (
-      async () => {
-        const leaderBoard = await fetchLeaderBoard(GameTypes.SNAKE);
-        for await (const leader of leaderBoard){
-          console.log(leader);
-        }
-      }
-    )()
-    
-  }, []);
-  
   return (
     <ThemeProvider theme={theme}>
       <Layout>

@@ -29,7 +29,7 @@ const defaultGap: GResponsiveProps = {
 }
 
 export const Grid: React.FunctionComponent<IGridProps> = ({
-    id = "",
+    id = undefined,
     className = "",
     onClick = () => { },
     style = {},

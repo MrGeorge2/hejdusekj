@@ -17,8 +17,8 @@ export const Games: React.FunctionComponent = () => {
                 <div className="games__content">
                     <Grid 
                         className="games__content__game game_snake"
-                        XS={{ size: 1, gap: 1 }}
-                        M={{ size: 2, gap: 1 }}
+                        XS={{ size: 1, gap: 3 }}
+                        M={{ size: 2, gap: 3 }}
                     >
                         <SnakeGame />
                         <LeaderBoard gameType={GameTypes.SNAKE} />

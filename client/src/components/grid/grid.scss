@@ -24,7 +24,7 @@ $width in $grid-sizes {
         }
         @for $i from 1 through $grid-gabs {
             .grid-gap-#{$size}-#{$i} {
-                gap: repeat($i, 1fr);
+                gap: #{$i*5}px;
             }
         }
     }
