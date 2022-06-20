@@ -4,6 +4,22 @@ import { AddLocalization, FetchLocalization, SwitchActiveLanguage } from "../../
 import { selectIsLanguageFetched, selectLanguageState } from "../../store/localization/selectors";
 import { FECH_LOCALIZATION, FetchLocalizationType, LocalizatinState, Localization, SwitchLocalizationActionCreatorType, SWITCH_LOCALIZATION_ACTION_CREATOR } from "../../store/localization/types";
 
+/**
+ * Initialize localization saga
+ * @returns 
+ */
+export function* initializeLocalization(){
+    /*
+    const activeLanguage: string = yield call(localStorage.getItem, "activeLanguage");
+    
+    if (activeLanguage){
+        yield put(FetchLocalization(activeLanguage));
+        return;
+    }*/
+
+    yield put(FetchLocalization("cs"));
+}
+
 
 /**
  * Read localization from generator
@@ -23,13 +39,14 @@ async function readLocalizationGenerator(languageCode: string): Promise<readonly
  * @param action 
  */
 export function* fetchLocalizationWorker(action: FetchLocalizationType) {
-    const locStateString = localStorage.getItem(`localization_${action.payload}`);
+    /*
+    const locStateString: string = yield call(localStorage.getItem, `localization_${action.payload}`);
     if (locStateString){
         const locState: LocalizatinState = JSON.parse(locStateString);
         yield put(AddLocalization(locState.localizations));
         yield put(SwitchActiveLanguage(locState.activeLanguage));
         return;
-    }
+    }*/
 
     // Since redux saga does not support async generators, we need to read the generator in a separate function.
     const localizations: readonly Localization[] = yield call(readLocalizationGenerator, action.payload);
@@ -39,7 +56,7 @@ export function* fetchLocalizationWorker(action: FetchLocalizationType) {
     }
 
     const languageState: LocalizatinState = yield select(selectLanguageState)
-    localStorage.setItem(`localization_${action.payload}`, JSON.stringify(languageState));
+    //yield call(localStorage.setItem, `localization_${action.payload}`, JSON.stringify(languageState));
 }
 
 /**
@@ -61,6 +78,8 @@ function* languageSwapperWorker(action: SwitchLocalizationActionCreatorType){
     }
 
     yield put(SwitchActiveLanguage(action.payload));
+
+    yield call(localStorage.setItem, `activeLanguage`, action.payload);
 }
 
 /**

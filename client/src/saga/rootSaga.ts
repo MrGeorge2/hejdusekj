@@ -4,7 +4,7 @@ import { GameTypes } from '../components/games/gameTypes';
 import { FETCH_LEADERS } from '../store/leader/types';
 import { FECH_LOCALIZATION } from '../store/localization/types';
 import { addNewLeaderWatcher, fetchLeadersWatcher, fetchLeadersWorker } from './leader/leaderSaga';
-import { fetchLocalizationWatcher, fetchLocalizationWorker, languageSwapperWatcher } from './localization/localizationSaga';
+import { fetchLocalizationWatcher, fetchLocalizationWorker, initializeLocalization, languageSwapperWatcher } from './localization/localizationSaga';
 import snakeChangeDirectionWatcher from './snake/snakeSaga';
 
 /**
@@ -12,7 +12,7 @@ import snakeChangeDirectionWatcher from './snake/snakeSaga';
  */
 function* initializeSaga() {
     yield saga.all([
-        call(fetchLocalizationWorker,{ type: FECH_LOCALIZATION, payload: 'cs' }),
+        call(initializeLocalization),
         call(fetchLeadersWorker, {type: FETCH_LEADERS, payload: GameTypes.SNAKE})
     ]);
 }
