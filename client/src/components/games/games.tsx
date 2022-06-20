@@ -11,14 +11,14 @@ export const Games: React.FunctionComponent = () => {
         <Container fluid>
             <div className="games">
                 <div className="games__header">
-                    <Loc locKey="games.Header"/>
+                    <h1><Loc locKey="games.Header"/></h1>
                 </div>
 
                 <div className="games__content">
                     <Grid 
                         className="games__content__game game_snake"
                         XS={{ size: 1, gap: 1 }}
-                        S={{ size: 3, gap: 1 }}
+                        M={{ size: 2, gap: 1 }}
                     >
                         <SnakeGame />
                         <LeaderBoard gameType={GameTypes.SNAKE} />

@@ -2,7 +2,7 @@ import { GameTypes } from "../../components/games/gameTypes";
 
 export type Leader = {
     score: number;
-    gameType: string;
+    gameType: GameTypes;
     nickName: string;
 }
 

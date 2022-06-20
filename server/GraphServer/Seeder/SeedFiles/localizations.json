@@ -140,6 +140,26 @@
             "languageCode": "en",
             "key": "games.Header",
             "value": "Small Break in the form of arcade games"
+        },
+        {
+            "languageCode": "cs",
+            "key": "games.NickName",
+            "value": "Přezdívka"
+        },
+        {
+            "languageCode": "en",
+            "key": "games.NickName",
+            "value": "NickName"
+        },
+        {
+            "languageCode": "cs",
+            "key": "games.Score",
+            "value": "Skóre"
+        },
+        {
+            "languageCode": "en",
+            "key": "games.Score",
+            "value": "Score"
         }
     ]
 }

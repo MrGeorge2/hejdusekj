@@ -1,5 +1,9 @@
 import { all, call, put, select, spawn, delay, takeEvery } from "redux-saga/effects";
-import { ChangeDirectionAction, ResetScoreAction, SetBlocksAction, SetFoodPositionAction, SetSnakeDirectionAction, SetVelocityAction } from "../../store/snake/actions";
+import { GameTypes } from "../../components/games/gameTypes";
+import { AddNewLeaderActionCreator } from "../../store/leader/actions";
+import { selectChampion } from "../../store/leader/selectors";
+import { Leader } from "../../store/leader/types";
+import { ChangeDirectionAction, IncrementScoreAction, ResetScoreAction, SetBlocksAction, SetFoodPositionAction, SetSnakeDirectionAction, SetVelocityAction } from "../../store/snake/actions";
 import { selectFood, selectHead, selectScore, selectSnakeBlocks, selectSnakeDirection, selectVelocity } from "../../store/snake/selectors";
 import { CHANGE_DIRECTION, ChangeDirectionType, SnakeDirection, Block, BlockType, PLAYGROUND_WIDTH, PLAYGROUN_HEIGHT, INITIAL_VELOCITY, VELOCITY_MULTIPLIER } from "../../store/snake/types";
 
@@ -43,8 +47,24 @@ function* gameOverWorker() {
     yield put(SetBlocksAction(resetBlocks))
 
     const score: number = yield select(selectScore);
-    alert(`GAME OVER! Your score is ${score}`);
+    
+    const actualLeader: Leader = yield select(selectChampion, GameTypes.SNAKE);
+    
+    if (actualLeader == null || actualLeader.score < score) {
+        const nickName: string = yield call(prompt, `New record! Your score is ${score}`);
 
+        if (nickName) {
+            yield put(AddNewLeaderActionCreator({
+                nickName: nickName,
+                score: score,
+                gameType: GameTypes.SNAKE
+            }));
+        }
+    }
+    else {
+        alert(`Game over! Your score is ${score}`);
+    }
+    
     // Reset games attributes to default values
     yield put(ResetScoreAction());
     yield put(SetVelocityAction(0));
@@ -66,6 +86,7 @@ function* generateFoodBlockWorker(head: Block) {
     }
 
     yield put(SetFoodPositionAction({x: x, y: y}));
+    yield put(IncrementScoreAction());
 
     // After snake eats a food, increment velocity
     const velocity: number = yield select(selectVelocity);

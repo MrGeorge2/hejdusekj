@@ -3,7 +3,7 @@ import { call } from 'redux-saga/effects';
 import { GameTypes } from '../components/games/gameTypes';
 import { FETCH_LEADERS } from '../store/leader/types';
 import { FECH_LOCALIZATION } from '../store/localization/types';
-import { fetchLeadersWatcher, fetchLeadersWorker } from './leader/leaderSaga';
+import { addNewLeaderWatcher, fetchLeadersWatcher, fetchLeadersWorker } from './leader/leaderSaga';
 import fetchLocalizationWatcher, { fetchLocalizationWorker } from './localization/localizationSaga';
 import snakeChangeDirectionWatcher from './snake/snakeSaga';
 
@@ -23,5 +23,6 @@ export default function* rootSaga() {
         fetchLocalizationWatcher(),
         fetchLeadersWatcher(),
         initializeSaga(),
+        addNewLeaderWatcher()
     ]);
 }

@@ -3,6 +3,7 @@ import Paper from "@mui/material/Paper";
 import { selectAllLeaders } from "../../store/leader/selectors";
 import { useAppSelector } from "../../store/rootStore";
 import { GameTypes } from "../games/gameTypes";
+import { Loc } from "../localization/loc";
 
 interface LeaderBoardProps {
     gameType: GameTypes
@@ -23,8 +24,14 @@ export const LeaderBoard: React.FunctionComponent<LeaderBoardProps> = ({
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="right">NickName</TableCell>
-                <TableCell align="right">Score</TableCell>
+                
+                <TableCell align="center">
+                  <Loc locKey="games.NickName"/>
+                </TableCell>
+
+                <TableCell align="center">
+                  <Loc locKey="games.Score"/>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -32,8 +39,8 @@ export const LeaderBoard: React.FunctionComponent<LeaderBoardProps> = ({
                     leaders.map((leader, index) => {
                         return (
                             <TableRow key={`${index}-${leader.nickName}`}>
-                                <TableCell align="right">{leader.nickName}</TableCell>
-                                <TableCell align="right">{leader.score}</TableCell>
+                                <TableCell align="center">{leader.nickName}</TableCell>
+                                <TableCell align="center">{leader.score}</TableCell>
                             </TableRow>
                         )
                     })

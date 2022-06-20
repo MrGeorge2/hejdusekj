@@ -1,7 +1,7 @@
-import { put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import { GameTypes } from "../../components/games/gameTypes";
-import { fetchLeaderBoard } from "../../services/leaderBoardService";
-import { ADD_LEADERS, FetchLeadersType, FETCH_LEADERS, Leader } from "../../store/leader/types";
+import { addNewLeaderAsync, fetchLeaderBoard } from "../../services/leaderBoardService";
+import { AddNewLeaderType, ADD_LEADERS, ADD_NEW_LEADER, FetchLeadersType, FETCH_LEADERS, Leader } from "../../store/leader/types";
 
 /**
  * Read leaders from async generator
@@ -33,4 +33,20 @@ export function* fetchLeadersWorker(action: FetchLeadersType) {
  */
 export function* fetchLeadersWatcher() {
     yield takeEvery(FETCH_LEADERS, fetchLeadersWorker);
+}
+
+
+/**
+ * Add new trader workder
+ */
+
+function* addNewLeaderWorker(action: AddNewLeaderType) {
+    const leader:  Readonly<Leader> = yield call(
+        () => addNewLeaderAsync(action.payload.nickName, action.payload.score, action.payload.gameType));
+
+    yield put({ type: ADD_LEADERS, payload: [leader] });
+}
+
+export function* addNewLeaderWatcher(){
+    yield takeEvery(ADD_NEW_LEADER, addNewLeaderWorker);
 }
