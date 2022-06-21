@@ -1,6 +1,6 @@
 import { call, put, select, takeEvery, takeLatest } from "redux-saga/effects";
 import { fetchLocalizationsAsync } from "../../services/localizationService";
-import { AddLocalization, FetchLocalization, SwitchActiveLanguage } from "../../store/localization/actions";
+import { AddLocalization, FetchLocalization, SwitchActiveLanguage, SwitchActiveLanguageActionCreator } from "../../store/localization/actions";
 import { selectIsLanguageFetched, selectLanguageState } from "../../store/localization/selectors";
 import { FECH_LOCALIZATION, FetchLocalizationType, LocalizatinState, Localization, SwitchLocalizationActionCreatorType, SWITCH_LOCALIZATION_ACTION_CREATOR } from "../../store/localization/types";
 
@@ -8,16 +8,16 @@ import { FECH_LOCALIZATION, FetchLocalizationType, LocalizatinState, Localizatio
  * Initialize localization saga
  * @returns 
  */
-export function* initializeLocalization(){
-    /*
-    const activeLanguage: string = yield call(localStorage.getItem, "activeLanguage");
-    
-    if (activeLanguage){
-        yield put(FetchLocalization(activeLanguage));
-        return;
-    }*/
+export function* initializeLocalization() {
+    let activeLanguage: string = yield call(() => { return localStorage.getItem("activeLanguage") });
 
-    yield put(FetchLocalization("cs"));
+    const DEFAULT_LANGUAGE = 'cs';
+
+    if (activeLanguage == null) {
+        activeLanguage = DEFAULT_LANGUAGE;
+    }
+
+    yield call(languageSwapperWorker, SwitchActiveLanguageActionCreator(activeLanguage))
 }
 
 
@@ -39,14 +39,13 @@ async function readLocalizationGenerator(languageCode: string): Promise<readonly
  * @param action 
  */
 export function* fetchLocalizationWorker(action: FetchLocalizationType) {
-    /*
-    const locStateString: string = yield call(localStorage.getItem, `localization_${action.payload}`);
-    if (locStateString){
+    const locStateString: string = yield call(() => { return localStorage.getItem(`localization_${action.payload}`) });
+
+    if (locStateString) {
         const locState: LocalizatinState = JSON.parse(locStateString);
         yield put(AddLocalization(locState.localizations));
-        yield put(SwitchActiveLanguage(locState.activeLanguage));
         return;
-    }*/
+    }
 
     // Since redux saga does not support async generators, we need to read the generator in a separate function.
     const localizations: readonly Localization[] = yield call(readLocalizationGenerator, action.payload);
@@ -56,7 +55,7 @@ export function* fetchLocalizationWorker(action: FetchLocalizationType) {
     }
 
     const languageState: LocalizatinState = yield select(selectLanguageState)
-    //yield call(localStorage.setItem, `localization_${action.payload}`, JSON.stringify(languageState));
+    yield call(() => localStorage.setItem(`localization_${action.payload}`, JSON.stringify(languageState)));
 }
 
 /**
@@ -70,21 +69,21 @@ export function* fetchLocalizationWatcher() {
  * Worker for swapping language
  * @param action 
  */
-function* languageSwapperWorker(action: SwitchLocalizationActionCreatorType){
+function* languageSwapperWorker(action: SwitchLocalizationActionCreatorType) {
     const isLocLoaded: boolean = yield select(selectIsLanguageFetched, action.payload);
 
-    if(!isLocLoaded){
+    if (!isLocLoaded) {
         yield put(FetchLocalization(action.payload));
     }
 
     yield put(SwitchActiveLanguage(action.payload));
 
-    yield call(localStorage.setItem, `activeLanguage`, action.payload);
+    yield call(() => localStorage.setItem(`activeLanguage`, action.payload));
 }
 
 /**
  * Language swapper
  */
-export function* languageSwapperWatcher(){
+export function* languageSwapperWatcher() {
     yield takeLatest(SWITCH_LOCALIZATION_ACTION_CREATOR, languageSwapperWorker)
 }
